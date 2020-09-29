@@ -1,11 +1,6 @@
 <?php
 // koneksi database
 $koneksi = mysqli_connect("localhost", "root", "", "journal");
-
-
-// registrasi
-
-
 // query
 function query($query)
 {
@@ -17,3 +12,6 @@ function query($query)
     }
     return $rows;
 }
+
+
+// registrasi

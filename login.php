@@ -41,12 +41,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang! </h1>
                                     </div>
-                                    <form class="user">
+                                    <form action="login_cek.php" method="POST" class="user">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user text-center" id="userName" aria-describedby="userName" placeholder="Username">
+                                            <input type="text" class="form-control form-control-user text-center" id="userName" name="username" aria-describedby="userName" placeholder="Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user text-center" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user text-center" id="exampleInputPassword" name="password" placeholder="Password">
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
