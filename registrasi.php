@@ -20,32 +20,6 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
-<script src="vendor/jquery/jquery.min.js">
-    function formel(param) {
-        if (param == 1)
-            document.getElementById("formel").style.visibility = 'visible';
-        else
-            document.getElementById("formel").style.visibility = 'hidden';
-
-    }
-    $(document).ready(function() {
-        $('#tombol').on('click', function() {
-            var data = $('#keyword').val();
-
-            $.ajax({
-                type: 'GET',
-                URL: 'ajax/cari.php',
-                data: data,
-                success: function() {
-                    console.log('oke!');
-                }
-            })
-        });
-    });
-</script>
-
-
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -60,8 +34,8 @@
                                 <h1 class="h4 text-gray-900 mb-4">Buat Akun!</h1>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Masukan NIP Yang Terdaftar" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <div class="input-group-append" id="keyword">
+                                <input id="keyword" type="text" class="form-control" placeholder="Masukan NIP Yang Terdaftar" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="tombol">Cek NIP</button>
                                 </div>
                             </div>
@@ -115,7 +89,36 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+<script>
+    function formel(param) {
+        if (param == 1)
+            document.getElementById("formel").style.visibility = 'visible';
+        else
+            document.getElementById("formel").style.visibility = 'hidden';
 
+    }
+    $(document).ready(function() {
+        $('#tombol').on('click', function() {
+            var data = $('#keyword').val();
+
+            $.ajax({
+                type: 'GET',
+                url: 'ajax/cari.php?keyword=' + data,
+                data: data,
+                success: function(data) {
+		    let parsed = JSON.parse(data);
+                    let status = parsed.status;
+console.log(status);
+		    if (status === 1) {
+			alert("NIK Terdaftar");
+		    } else {
+		    	alert("NIK Tidak Terdaftar");
+		    }
+                }
+            })
+        });
+    });
+</script>
 </body>
 
 </html>
