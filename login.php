@@ -39,11 +39,11 @@
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang! </h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang !</h1>
                                     </div>
                                     <form action="login_cek.php" method="POST" class="user">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user text-center" id="userName" name="username" aria-describedby="userName" placeholder="Username">
+                                            <input type="text" class="form-control form-control-user text-center" id="userName" name="nip" aria-describedby="userName" placeholder="Nomor Induk Pegawai" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user text-center" id="exampleInputPassword" name="password" placeholder="Password">
