@@ -7,7 +7,7 @@ $query = query($query);
 
 $ret = count($query) > 0 ? 1 : 0;
 $result = [
-  'status' => $ret,
+    'status' => $ret,
 ];
 
 echo json_encode($result, JSON_PRETTY_PRINT);
