@@ -25,8 +25,18 @@ function registrasi($data)
     $password2 = mysqli_real_escape_string($koneksi, $data["password2"]);
     $jabatan = htmlspecialchars($data['jabatan']);
 
-    // cek kesamaan password 
+    // cek NIP dari database
+    $cek = mysqli_query($koneksi, "SELECT * FROM wewenang WHERE nip = '$nip'");
+    if (mysqli_num_rows($cek) < 1) {
+        echo "<script> 
+            alert('NIP yang di masukan tidak valid !');
+        </script>";
+        return false;
+    }
+
     if ($password1 !== $password2) {
+        // cek kesamaan password 
+
         echo "<script> 
             alert('Konfirmasi Password Tidak Sesuai !');
         </script>";

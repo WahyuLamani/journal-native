@@ -11,6 +11,8 @@ $data = mysqli_num_rows($result);
 $row = mysqli_fetch_assoc($result);
 
 if ($data > 0) {
+    $_SESSION['nama'] = $row['nama'];
+    $_SESSION['jabatan'] = $row['jabatan'];
 
     $passverif = password_verify($password, $row["password"]);
     kelola_data();

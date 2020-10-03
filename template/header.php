@@ -1,8 +1,14 @@
+<?php
+if ($_SESSION['role_pegawai'] == 'admin') {
+    $data = 'ADMINISTRATOR';
+} else {
+    $data = 'STAFF';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title> <?= $data; ?> </title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,11 +24,5 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<!-- <img src="img/bg-img-polimdo.png"> -->
 
-<body style="background-image: url(img/bg-img-polimdo.png);
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-attachment: fixed;">
+</head>
