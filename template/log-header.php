@@ -1,3 +1,9 @@
+<?php
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Journal Kegiatan Pegawai !!</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,7 +28,7 @@
 </head>
 <!-- <img src="img/bg-img-polimdo.png"> -->
 
-<body style="background-image: url(img/bg-img-polimdo.png);
+<body style="background-image: url(img/poli-mdo.png);
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-attachment: fixed;">

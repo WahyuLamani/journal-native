@@ -4,7 +4,12 @@ include 'template/header.php';
 include 'template/sidebar.php';
 require 'functions.php';
 
-$_SESSION['data'] = 'anak asu';
+$nama = $_SESSION['nama'];
+$nip = $_SESSION['nip'];
+$jabatan = $_SESSION['jabatan'];
+// $gambar = $_SESSION['gambar'];
+$wewenang = $_SESSION['role_pegawai'];
+$id = $_SESSION['id'];
 ?>
 
 
@@ -40,7 +45,7 @@ $_SESSION['data'] = 'anak asu';
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $_SESSION['nama']; ?> </span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $nama; ?> </span>
                         <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                     </a>
                     <!-- Dropdown - User Information -->
@@ -80,8 +85,42 @@ $_SESSION['data'] = 'anak asu';
                         </div>
                         <div class="card-body">
                             <!-- Content -->
+                            <form action="" method="POST">
+                                <div class="container">
+                                    <fieldset disabled>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class=" col-form-label">Nama </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class=" col-form-label">NIP</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class=" col-form-label">Jabatan</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="inputEmail3" value="<?= $nama; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="inputEmail3" value="<?= $nip; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="inputEmail3" value="<?= $jabatan; ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <img src="img/polimdo.jpg" alt="..." class="img-thumbnail">
+                                            </div>
+                                        </div>
 
+                                    </fieldset>
+                                    <a href="ubah.php?id=<?= $id; ?>" class="fas fa-edit fa-sm fa-fw mr-2 text-red-400"></a>
 
+                                </div>
+                            </form>
                         </div>
                     </div>
 

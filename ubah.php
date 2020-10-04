@@ -2,6 +2,11 @@
 session_start();
 include 'template/header.php';
 require 'functions.php';
+
+$id = $_GET['id'];
+
+$data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
+
 ?>
 <div class="container">
     <div class="col-lg-9 mb-2">
@@ -28,17 +33,21 @@ require 'functions.php';
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="inputEmail3" value="kosong">
+                                    <input type="text" class="form-control" id="inputEmail3" value="<?= $data['nama'] ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="inputEmail3" value="kosong">
+                                    <input type="text" class="form-control" id="inputEmail3" value="<?= $data['nip'] ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="inputEmail3" value="kosong">
+                                    <input type="text" class="form-control" id="inputEmail3" value="<?= $data['jabatan'] ?>">
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <img src="img/polimdo.jpg" alt="..." class="img-thumbnail">
+                                <img src="img/<?= $data['gambar'] ?>" alt="..." class="img-thumbnail">
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Example file input</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" value="<?= $data['gambar'] ?>">
+                                </div>
                             </div>
                         </div>
 

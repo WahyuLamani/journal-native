@@ -13,6 +13,8 @@ $row = mysqli_fetch_assoc($result);
 if ($data > 0) {
     $_SESSION['nama'] = $row['nama'];
     $_SESSION['jabatan'] = $row['jabatan'];
+    $_SESSION['gambar'] = $row['gambar'];
+    $_SESSION['id'] = $row['id_pegawai'];
 
     $passverif = password_verify($password, $row["password"]);
     kelola_data();
