@@ -1,3 +1,7 @@
+<?php
+if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
+?>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -64,8 +68,6 @@
                         ">Borders</a>
                         <a class="collapse-item" href="utilities-animation.php
                         ">Animations</a>
-                        <a class="collapse-item" href="logout.php
-                        ">Logout</a>
                     </div>
                 </div>
             </li>

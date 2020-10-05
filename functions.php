@@ -60,3 +60,18 @@ function registrasi($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+function tambahPegawai($data)
+{
+    global $koneksi;
+    $nip = htmlspecialchars($data['nip']);
+    $role = $data['role'];
+
+    $query = "INSERT INTO wewenang
+			VALUES
+			('$nip','$role')";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
