@@ -134,7 +134,10 @@ if (isset($_POST["tambahDataPegawai"])) {
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
-                                                <img src="img/<?= $gambar; ?>" alt="..." class="img-thumbnail">
+                                                <img src="img/<?= $gambar; ?>" alt="..." class="img-thumbnail" width="200">
+                                                <i class="fas fa-info fa-sm fa-fw mr-2 text-gray-760" data-toggle="tooltip" data-placement="top" title="jika Anda Mengedits Gambar, Login kembali Untuk memperbarui">
+                                                </i>
+
                                             </div>
                                         </div>
 
@@ -152,12 +155,13 @@ if (isset($_POST["tambahDataPegawai"])) {
                         <div class="card-header py-3">
                             <h6 class="font-weight-bold text-primary">Input Data Pegawai</h6>
                         </div>
+
                         <div class="card-body">
                             <form action="" method="POST">
                                 <div class="form-group">
                                     <input type="text" name="nip" class="form-control" id="inputEmail3" placeholder=" No.Induk Pegawai">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-lg-11">
                                     <select id="inputState" name="role" class="form-control">
                                         <option selected>Pegawai Sebagai</option>
                                         <option value="admin">admin</option>
@@ -221,6 +225,12 @@ if (isset($_POST["tambahDataPegawai"])) {
     </div>
 </div>
 
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -237,6 +247,7 @@ if (isset($_POST["tambahDataPegawai"])) {
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
+
 
 </body>
 

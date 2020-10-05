@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Sep 2020 pada 05.38
+-- Waktu pembuatan: 05 Okt 2020 pada 15.56
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -33,15 +33,18 @@ CREATE TABLE `pegawai` (
   `nama` varchar(52) NOT NULL,
   `nip` varchar(18) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `jabatan` varchar(52) NOT NULL
+  `jabatan` varchar(52) NOT NULL,
+  `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `pegawai`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nama`, `nip`, `password`, `jabatan`) VALUES
-(1, 'Mner Tony', '197003091990111000', '123', 'Kepala bagian Humas');
+INSERT INTO `pegawai` (`id_pegawai`, `nama`, `nip`, `password`, `jabatan`, `gambar`) VALUES
+(9, 'wahyu lamani', '17024051', '$2y$10$/8gpRU1Nab2OR5LBbNxQl.SW2vVnjDcmdMijZx5u.9JtmK7OMHin2', 'mahasiswa', '5f7b26088c9f0.png'),
+(23, 'staff', '789', '$2y$10$DEB0BA.ovIt0x/yTmHUci.J5pjIcGkNgFt.7eyIpSuxGICPa8bfBm', 'staff', ''),
+(25, 'test', '678', '$2y$10$Z.qU0tWLtyI.uuwIVGz/BOCkVjvbLX9nwAhX64meFevZRXSQOh3D.', 'test', '');
 
 -- --------------------------------------------------------
 
@@ -59,8 +62,13 @@ CREATE TABLE `wewenang` (
 --
 
 INSERT INTO `wewenang` (`nip`, `role_pegawai`) VALUES
-('19238547286529313', 'staff'),
-('197003091990111000', 'admin');
+('123', 'admin'),
+('123123', 'admin'),
+('1234', 'staff'),
+('17024051', 'admin'),
+('197003091990111000', 'admin'),
+('678', 'admin'),
+('789', 'staff');
 
 --
 -- Indexes for dumped tables
@@ -87,7 +95,7 @@ ALTER TABLE `wewenang`
 -- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pegawai` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

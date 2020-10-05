@@ -4,8 +4,18 @@ include 'template/header.php';
 require 'functions.php';
 
 $id = $_GET['id'];
-
 $data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
+
+if (isset($_POST["ubah"])) {
+
+    if (ubahProfile($_POST) > 0) {
+        echo "<script>
+                alert('Data Berhasil Di Ubah !');
+            </script>";
+    } else {
+        echo mysqli_error($koneksi);
+    }
+}
 
 ?>
 <div class="container">
@@ -17,7 +27,7 @@ $data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
             </div>
             <div class="card-body">
                 <!-- Content -->
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-3">
@@ -32,22 +42,24 @@ $data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <input type="hidden" name="id" value="<?= $data['id_pegawai'] ?>">
+                                <input type="hidden" name="id" value="<?= $data['id_pegawai']; ?>">
+                                <input type="hidden" name="password" value="<?= $data['password']; ?>">
+                                <input type="hidden" name="gambarLama" value="<?= $data['gambar']; ?> ">
                                 <div class="form-group">
-                                    <input type="text" name="nama" class="form-control" id="inputEmail3" value="<?= $data['nama'] ?>">
+                                    <input type="text" name="nama" class="form-control" id="inputEmail3" value="<?= $data['nama']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="nip" class="form-control" id="inputEmail3" value="<?= $data['nip'] ?>">
+                                    <input type="text" name="nip" class="form-control" id="inputEmail3" value="<?= $data['nip']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="jabatan" class="form-control" id="inputEmail3" value="<?= $data['jabatan'] ?>">
+                                    <input type="text" name="jabatan" class="form-control" id="inputEmail3" value="<?= $data['jabatan']; ?>">
                                 </div>
                             </div>
                             <div class="col-sm-5">
-                                <img src="img/<?= $data['gambar'] ?>" alt="..." class="img-thumbnail">
+                                <img src="img/<?= $data['gambar']; ?>" alt="..." width="100" class="img-thumbnail">
                                 <div class="form-group">
-                                    <label for="exampleFormControlFile1">Example file input</label>
-                                    <input type="file" name="gambar" class="form-control-file" id="exampleFormControlFile1" value="<?= $data['gambar'] ?>">
+                                    <label for="exampleFormControlFile1">Tambahkan Foto</label>
+                                    <input type="file" name="gambar" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                         </div>
@@ -57,6 +69,8 @@ $data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
 
                     </div>
                 </form>
+                <!-- <button type="submit" onclick="javascript:history.back()" class="btn btn-primary my-1">kembali</button> -->
+                <a href="index.php" class="btn btn-primary">kembali</a>
             </div>
         </div>
 
