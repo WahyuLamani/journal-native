@@ -44,9 +44,9 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
+                        <h6 class="collapse-header">Data Item List</h6>
                         <a class="collapse-item" href="buttons.php
-                        ">Buttons</a>
+                        ">Pegawai</a>
                         <a class="collapse-item" href="cards.php
                         ">Cards</a>
                     </div>
@@ -61,9 +61,9 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.php
-                        ">Colors</a>
+                        <h6 class="collapse-header">Daftar Kegiatan :</h6>
+                        <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="skp.php
+                        ">Input Data SKP (tahunan)</a>
                         <a class="collapse-item" href="utilities-border.php
                         ">Borders</a>
                         <a class="collapse-item" href="utilities-animation.php

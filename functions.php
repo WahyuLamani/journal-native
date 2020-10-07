@@ -61,6 +61,7 @@ function registrasi($data)
     return mysqli_affected_rows($koneksi);
 }
 
+// tambah pegawai
 function tambahPegawai($data)
 {
     global $koneksi;
@@ -77,7 +78,7 @@ function tambahPegawai($data)
 }
 
 
-
+// ubah profile pegawai
 function ubahProfile($data)
 {
     global $koneksi;
@@ -162,4 +163,54 @@ function upload()
     move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
     return $namaFileBaru;
+}
+
+
+// tambah SKP
+function inputSkp($data)
+{
+    global $koneksi;
+    $uraian = htmlspecialchars($data['uraian']);
+    $target = $data['target'];
+    $satuan = htmlspecialchars($data['satuan']);
+
+    $query = "INSERT INTO skp
+			VALUES
+			('','$uraian','$target','$satuan')";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+// hapus SKP
+function hapus_skp($id)
+{
+
+    global $koneksi;
+    $result = mysqli_query($koneksi, "DELETE FROM skp WHERE id_skp = $id");
+
+
+    return mysqli_affected_rows($koneksi);
+}
+
+// ubah SKP
+function ubahSkp($data)
+{
+    global $koneksi;
+    $id = $data['id'];
+    $uraian = htmlspecialchars($data['uraian']);
+    $target = $data['target'];
+    $satuan = htmlspecialchars($data['satuan']);
+
+    $query = "UPDATE skp SET
+            id_skp = $id,
+            uraian = '$uraian',
+            satuan = '$satuan'
+            WHERE id_skp = $id
+            ";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
 }

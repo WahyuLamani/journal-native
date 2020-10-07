@@ -20,7 +20,7 @@ if ($data > 0) {
     kelola_data();
 } else {
     echo '<script> alert("Nip Yang dimasukan Salah !"); 
-    window.location.href="http://localhost/journal-native/login.php";</script>';
+    document.location.href="login.php";</script>';
     exit;
 }
 
@@ -41,6 +41,7 @@ function kelola_data()
 
         $data = mysqli_fetch_assoc($level);
         if ($cek > 0) {
+            $_SESSION['login'] = true;
 
             // cek jika user login sebagai admin
             if ($data['role_pegawai'] == "admin") {
@@ -57,7 +58,7 @@ function kelola_data()
                 $_SESSION['nip'] = $nip;
                 $_SESSION['role_pegawai'] = "staff";
                 // alihkan ke halaman dashboard operator
-                header("location:staff/");
+                header("location:index.php");
 
                 // cek jika user login sebagai pengurus
             } else {
@@ -67,6 +68,6 @@ function kelola_data()
         }
     } else {
         echo '<script> alert("Password salah !"); 
-    window.location.href="http://localhost/journal-native/login.php";</script>';
+    document.location.href="login.php";</script>';
     }
 }
