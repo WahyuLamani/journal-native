@@ -57,7 +57,9 @@ function registrasi($data)
 
     // tambah data
     mysqli_query($koneksi, "INSERT INTO pegawai VALUE ('','$nama', '$nip', '$password','$jabatan','')");
+    $query = "UPDATE wewenang SET user_is = 'aktif' WHERE nip = $nip";
 
+    mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
 
