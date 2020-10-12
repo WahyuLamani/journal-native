@@ -1,11 +1,16 @@
 <?php
 session_start();
+include 'template/header.php';
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
-if (!isset($_SESSION['login'])) {
+$sesion = $_SESSION['role_pegawai'];
+if (isset($_SESSION['login'])) {
+    if ($sesion == 'staff') {
+        exit('<h1><i class="fas fa-times-circle"></i> Access is Denied !!</h1>');
+    }
+} else {
     header('location:login.php');
 }
 
-include 'template/header.php';
 include 'template/sidebar.php';
 include 'template/topbar.php';
 require 'functions.php';
@@ -32,7 +37,7 @@ if (isset($_POST["inputskp"])) {
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-0">
         <h1 class="h3 mb-4 text-gray-800">Sasaran Kerja Pegawai (SKP)</h1>
-        <p class="d-none d-sm-inline-block text-gray-650"> <?= 'Waktu : ' . date('Y-m-d H:i:s'); ?> </p>
+        <p class="d-none d-sm-inline-block text-gray-650"> <?= date('Y-m-d H:i:s'); ?> </p>
     </div>
     <!-- content row -->
     <div class="row">
@@ -59,7 +64,7 @@ if (isset($_POST["inputskp"])) {
                             <input type="text" name="satuan" class="form-control" id="exampleFormControlInput1" placeholder="Satuan dari target (misal : dokumen atau gambar)">
                         </div>
 
-                        <button type="submit" name="inputskp" class="btn btn-primary">Input data</button>
+                        <button type="submit" name="inputskp" class="btn btn-primary fa-pull-right">Input data</button>
 
                     </form>
                 </div>
@@ -131,23 +136,9 @@ if (isset($_POST["inputskp"])) {
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="logout.php">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+include 'template/modal.php';
+?>
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

@@ -2,8 +2,10 @@
 session_start();
 include 'template/header.php';
 if (!isset($_SESSION['login'])) {
-    header('location:login.php');
+    header('location: login.php');
 }
+
+
 require 'functions.php';
 
 $id = $_GET['id'];

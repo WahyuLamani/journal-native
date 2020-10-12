@@ -41,7 +41,7 @@ if (isset($_POST["tambahDataPegawai"])) {
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-4 text-gray-800">Profile</h1>
-        <p class="d-none d-sm-inline-block text-gray-650"> <?= 'Waktu : ' . date('Y-m-d H:i:s'); ?> </p>
+        <p class="d-none d-sm-inline-block text-gray-650"> <?= date('Y-m-d H:i:s'); ?> </p>
     </div>
     <!-- Content Row -->
     <div class="row">
@@ -116,7 +116,7 @@ if (isset($_POST["tambahDataPegawai"])) {
                                 <option value="staff">staff</option>
                             </select>
                         </div>
-                        <button type="submit" name="tambahDataPegawai" class="btn btn-primary">Tambah Pegawai</button>
+                        <button type="submit" name="tambahDataPegawai" class="btn btn-primary fa-pull-right">Tambah Pegawai</button>
                     </form>
                 </div>
             </div>
@@ -154,24 +154,9 @@ if (isset($_POST["tambahDataPegawai"])) {
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="logout.php
-                    ">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
+include 'template/modal.php';
+?>
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

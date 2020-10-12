@@ -2,7 +2,12 @@
 
 $id = $_GET['id'];
 session_start();
-if (!isset($_SESSION['login'])) {
+$sesion = $_SESSION['role_pegawai'];
+if (isset($_SESSION['login'])) {
+    if ($sesion == 'staff') {
+        exit('<h1>Access is Denied !!</h1>');
+    }
+} else {
     header('location:login.php');
 }
 require 'functions.php';

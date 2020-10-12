@@ -1,7 +1,12 @@
 <?php
 session_start();
 include 'template/header.php';
-if (!isset($_SESSION['login'])) {
+$sesion = $_SESSION['role_pegawai'];
+if (isset($_SESSION['login'])) {
+    if ($sesion == 'staff') {
+        exit('<h1><i class="fas fa-times-circle"></i> Access is Denied !!</h1>');
+    }
+} else {
     header('location:login.php');
 }
 require 'functions.php';

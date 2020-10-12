@@ -1,5 +1,7 @@
 <?php
-if ($_SESSION['role_pegawai'] == 'admin') {
+date_default_timezone_set("Asia/Makassar");
+$sesion = $_SESSION['role_pegawai'];
+if ($sesion === 'admin') {
     $data = 'ADMINISTRATOR';
 } else {
     $data = 'STAFF';
