@@ -72,7 +72,7 @@ function tambahPegawai($data)
 
     $query = "INSERT INTO wewenang
 			VALUES
-			('$nip','$role')";
+			('$nip','$role','nonaktif')";
 
     mysqli_query($koneksi, $query);
 
@@ -213,6 +213,16 @@ function ubahSkp($data)
             ";
 
     mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+// hapus SKP
+function hapus_pegawai($id)
+{
+
+    global $koneksi;
+    $result = mysqli_query($koneksi, "DELETE FROM wewenang WHERE nip = $id");
 
     return mysqli_affected_rows($koneksi);
 }

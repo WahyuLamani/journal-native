@@ -10,13 +10,13 @@ if (isset($_SESSION['login'])) {
 }
 require 'functions.php';
 
-$id = $_GET["id"];
-if (hapus_skp($id) > 0) {
+$id = $_GET["nip"];
+if (hapus_pegawai($id) > 0) {
     echo ' <script> alert("data berhasil di hapus !");
-    document.location.href= "skp.php";
+    document.location.href= "pegawai.php";
     </script>';
 } else {
     echo '<script> alert("data gagal di hapus !");
-     document.location.href= "skp.php";
+     document.location.href= "pegawai.php";
     </script>';
 }

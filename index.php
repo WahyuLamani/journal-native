@@ -17,16 +17,6 @@ $gambar = $_SESSION['gambar'];
 $wewenang = $_SESSION['role_pegawai'];
 $id = $_SESSION['id'];
 
-if (isset($_POST["tambahDataPegawai"])) {
-
-    if (tambahPegawai($_POST) > 0) {
-        echo "<script>
-                alert('Data Berhasil Di Tambahkan !');
-            </script>";
-    } else {
-        echo mysqli_error($koneksi);
-    }
-}
 
 
 ?>
@@ -96,32 +86,8 @@ if (isset($_POST["tambahDataPegawai"])) {
                     </form>
                 </div>
             </div>
-
         </div>
-        <div class="col-lg-3 <?= $wewenang; ?>">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="font-weight-bold text-primary">Input Data Pegawai</h6>
-                </div>
-
-                <div class="card-body">
-                    <form action="" method="POST" class="<?= $wewenang; ?>">
-                        <div class="form-group">
-                            <input type="text" name="nip" class="form-control" id="inputEmail3" placeholder=" No.Induk Pegawai">
-                        </div>
-                        <div class="form-group">
-                            <select id="inputState" name="role" class="form-control">
-                                <option selected>Pegawai Sebagai</option>
-                                <option value="admin">admin</option>
-                                <option value="staff">staff</option>
-                            </select>
-                        </div>
-                        <button type="submit" name="tambahDataPegawai" class="btn btn-primary fa-pull-right">Tambah Pegawai</button>
-                    </form>
-                </div>
-            </div>
-            </form>
-        </div>
+        <!-- col-lg-3 -->
     </div>
 </div>
 </div>
