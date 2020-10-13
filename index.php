@@ -73,7 +73,7 @@ $id = $_SESSION['id'];
                                     </div>
                                     <div class="col-sm-5">
                                         <img src="img/<?= $gambar; ?>" alt="..." class="img-thumbnail" width="200">
-                                        <i class="fas fa-info fa-sm fa-fw mr-2 text-gray-760" data-toggle="tooltip" data-placement="top" title="jika Anda Mengedit Gambar, Login kembali Untuk Memperbarui !">
+                                        <i class="fas fa-info fa-sm fa-fw mr-2 text-gray-760" data-toggle="tooltip" data-placement="top" title="jika Anda Mengedit Data Diri, Login kembali Untuk Memperbarui !">
                                         </i>
 
                                     </div>

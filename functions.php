@@ -217,12 +217,30 @@ function ubahSkp($data)
     return mysqli_affected_rows($koneksi);
 }
 
-// hapus SKP
+// hapus pegawai
 function hapus_pegawai($id)
 {
 
     global $koneksi;
     $result = mysqli_query($koneksi, "DELETE FROM wewenang WHERE nip = $id");
+
+    return mysqli_affected_rows($koneksi);
+}
+
+// tambah Kegiatan
+function tambahKegiatan($data)
+{
+    global $koneksi;
+    $nip = htmlspecialchars($data['nip']);
+    $kegiatan = htmlspecialchars($data['kegiatan']);
+    $id_skp = $data['id_skp'];
+    $tanggal = $data['tanggal'];
+
+    $query = "INSERT INTO kegiatan_pegawai
+			VALUES
+			('','$nip','$id_skp','$kegiatan','$tanggal')";
+
+    mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
 }
