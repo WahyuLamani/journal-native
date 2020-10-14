@@ -117,9 +117,6 @@ function ubahProfile($data)
 
 
 
-
-
-
 // function upload
 function upload()
 {
@@ -236,6 +233,13 @@ function tambahKegiatan($data)
     $id_skp = $data['id_skp'];
     $tanggal = $data['tanggal'];
 
+    if ($id_skp < 1) {
+        echo "<script>
+				alert('Pilih SKP !');
+			  </script>";
+        return false;
+    }
+
     $query = "INSERT INTO kegiatan_pegawai
 			VALUES
 			('','$nip','$id_skp','$kegiatan','$tanggal')";
@@ -243,4 +247,82 @@ function tambahKegiatan($data)
     mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
+}
+
+// tambah data kegiatan
+function tambahDataKegiatan($data)
+{
+    global $koneksi;
+    $nip = htmlspecialchars($data['nip']);
+    $ket = htmlspecialchars($data['ket']);
+    $id_skp = $data['id_skp'];
+    $tanggal = $data['tanggal_data'];
+
+    if ($id_skp < 1) {
+        echo "<script>
+				alert('Pilih SKP !');
+			  </script>";
+        return false;
+    }
+
+    // upload data
+    $data = uploadData();
+    if (!$data) {
+        return false;
+    }
+    $query = "INSERT INTO data
+			VALUES
+			('','$id_skp','$nip','$data','$tanggal','$ket')";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+// function upload data
+function uploadData()
+{
+    $valueRandom = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $namaFile = $_FILES['data']['name'];
+    $ukuranFile = $_FILES['data']['size'];
+    $error = $_FILES['data']['error'];
+    $tmpName = $_FILES['data']['tmp_name'];
+
+    //cek apakah tidak ada data yang di upload
+    if ($error === 4) {
+        echo "<script>
+				alert('silakan pilih data');
+			  </script>";
+        return false;
+    }
+
+    //cek apakah yang di upload adalah gambar
+    $ekstensiDataValid = ['jpg', 'jpeg', 'png', 'docx', 'doc', 'pdf'];
+    $ekstensiData = explode('.', $namaFile);
+    $namabaru = $ekstensiData[0];
+    $ekstensiData = strtolower(end($ekstensiData));
+    if (!in_array($ekstensiData, $ekstensiDataValid)) {
+        echo "<script>
+				alert('Yang Di Upload Bukan File Seharusnya !');
+			  </script>";
+        return false;
+    }
+    //cek ukuran gambar
+    if ($ukuranFile > 2500000) {
+        echo "<script>
+				alert('Ukuran file terlalu besar');
+			  </script>";
+        return false;
+    }
+    //lolos pengecekan format dan ukuran, upload gambar ke database
+    // buat nama file baru agar tidak tertimpa
+    $namaFileBaru = $namabaru;
+    $namaFileBaru .= ' ';
+    $namaFileBaru .= substr(str_shuffle($valueRandom), 0, 5);
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiData;
+
+    move_uploaded_file($tmpName, 'data/' . $namaFileBaru);
+
+    return $namaFileBaru;
 }

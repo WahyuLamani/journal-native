@@ -37,7 +37,7 @@ if (isset($_POST["ubah"])) {
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class=" col-form-label">Email</label>
+                                    <label for="inputEmail3" class=" col-form-label">Nama</label>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3" class=" col-form-label">NIP</label>
@@ -53,9 +53,11 @@ if (isset($_POST["ubah"])) {
                                 <div class="form-group">
                                     <input type="text" name="nama" class="form-control" id="inputEmail3" value="<?= $data['nama']; ?>">
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" name="nip" class="form-control" id="inputEmail3" value="<?= $data['nip']; ?>">
-                                </div>
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <input type="text" name="nip" class="form-control" id="inputEmail3" value="<?= $data['nip']; ?>">
+                                    </div>
+                                </fieldset>
                                 <div class="form-group">
                                     <input type="text" name="jabatan" class="form-control" id="inputEmail3" value="<?= $data['jabatan']; ?>">
                                 </div>

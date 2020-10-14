@@ -46,7 +46,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Item List</h6>
                         <a class="collapse-item" href="input-kegiatan.php
-                        ">Input kegiatan !!</a>
+                        ">Aktivitas !!</a>
                         <a class="collapse-item" href="cards.php
                         ">Cards</a>
                     </div>

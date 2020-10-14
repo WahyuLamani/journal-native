@@ -3,15 +3,25 @@ session_start();
 require 'functions.php';
 include 'template/header.php';
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
+$nip = $_SESSION['nip'];
+$sesion = $_SESSION['role_pegawai'];
+if (isset($_SESSION['login'])) {
+    if ($sesion == 'staff') {
+        $data = query("SELECT kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 
-if (!isset($_SESSION['login'])) {
+        $data1 = query("SELECT data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
+    } else {
+        $data = query("SELECT kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+
+        $data1 = query("SELECT data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+    }
+} else {
     header('location:login.php');
 }
 include 'template/sidebar.php';
 include 'template/topbar.php';
-$nip = $_SESSION['nip'];
 
-$data = query("SELECT * FROM kegiatan_pegawai");
+
 
 ?>
 
@@ -34,9 +44,10 @@ $data = query("SELECT * FROM kegiatan_pegawai");
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
+            <button data-toggle="modal" data-target="#Modal-output-dataKegiatan" class="btn btn-warning mt-3 fa-pull-right">Lihat Data Dokumentasi</button>
             <div class="media">
                 <button data-toggle="modal" data-target="#Modal-input-kegiatan" class="btn btn-primary mt-3 mr-3">Tambah Kegiatan Hari Ini</button>
-                <button data-toggle="modal" data-target="#Modal-data-notRegister" class="btn btn-warning mt-3 mr-3">Belum registrasi</button>
+                <button data-toggle="modal" data-target="#Modal-input-dataKegiatan" class="btn btn-primary mt-3 mr-3">Tambah Hasil Dokumentasi</button>
             </div>
         </div>
         <div class="card-body">
@@ -44,28 +55,32 @@ $data = query("SELECT * FROM kegiatan_pegawai");
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>NIP</th>
-                            <th>Jabatan</th>
-                            <th>Foto</th>
+                            <th class="<?= $sesion; ?>">Nama</th>
+                            <th>Jenis SKP</th>
+                            <th>Target</th>
+                            <th>Aktivitas Anda</th>
+                            <th>Tanggal</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Nama</th>
-                            <th>NIP</th>
-                            <th>Jabatan</th>
-                            <th>Foto</th>
+                            <th class="<?= $sesion; ?>">Nama</th>
+                            <th>Jenis SKP</th>
+                            <th>Target</th>
+                            <th>Aktivitas Anda</th>
+                            <th>Tanggal</th>
                             <th>Edit</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <tr><?php foreach ($data as $row) : ?>
-                                <td>Lorem.</td>
-                                <td>Lorem.</td>
-                                <td>Lorem.</td>
-                                <td>Lorem.</td>
+                                <td class="<?= $sesion; ?>"><?= $row['nama']; ?></td>
+                                <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
+                                    </button></td>
+                                <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
+                                <td><?= $row['kegiatan']; ?></td>
+                                <td><?= $row['tanggal']; ?></td>
                                 <td><a href="#" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
                         </tr>
                     <?php endforeach; ?>
@@ -105,9 +120,10 @@ $data = query("SELECT * FROM kegiatan_pegawai");
 <?php
 include 'template/modal.php';
 include 'template/modal-inputKegiatan.php';
-include 'template/modal-data-notRegister.php';
-?>
+include 'template/modal-inputDataKegiatan.php';
+include 'template/modal-dataDokumentasi.php';
 
+?>
 
 
 <!-- Bootstrap core JavaScript-->
@@ -126,7 +142,15 @@ include 'template/modal-data-notRegister.php';
 
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
+<script>
+    $('.admin').show();
+    $('.staff').hide();
+    // $('[name="nama"]').hide();
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
 
+    });
+</script>
 </body>
 
 </html>
