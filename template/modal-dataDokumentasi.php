@@ -21,23 +21,26 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                             <th scope="col">Nama File</th>
                             <th scope="col">SKP</th>
                             <th scope="col">Target</th>
-                            <th class="<?= $sesion; ?>">Edit</th>
+                            <th width="85"">Menu</th>
                         </tr>
                     </thead>
                     <?php $i = 1; ?>
                     <tbody><?php foreach ($data1 as $row) : ?>
                             <tr>
-                                <th scope="row"><?= $i; ?></th>
-                                <th class="<?= $sesion; ?>"><?= $row['nama']; ?></th>
-                                <td><?= $row['tanggal_data']; ?></td>
-                                <td><?= $row['file']; ?></td>
-                                <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
-                                    </button></td>
-                                <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
-                                <th class="<?= $sesion; ?>"> <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-lg fa-fw mr-1"> </a> </th>
-                            </tr>
-                            <?php $i++; ?>
-                        <?php endforeach; ?>
+                                <th scope=" row"><?= $i; ?></th>
+                            <th class="<?= $sesion; ?>"><?= $row['nama']; ?></th>
+                            <td><?= $row['tanggal_data']; ?></td>
+                            <td><?= $row['file']; ?></td>
+                            <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
+                                </button></td>
+                            <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
+                            <th>
+                                <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-sm fa-fw mr-1"> </a> |
+                                <a href="hapus_dataDokumentasi.php?id=<?= $row['id_data']; ?>" class="fas fa-trash fa-sm fa-fw mr-1 <?= $sesion; ?>"> </a>
+                            </th>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -99,7 +99,10 @@ function ubahProfile($data)
     if ($_FILES['gambar']['error'] === 4) {
         $gambar = $gambarLama;
     } else {
+
+        // hapus file direktori
         unlink($delImg);
+
         $gambar = upload();
     }
 
@@ -294,6 +297,17 @@ function tambahDataKegiatan($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+// hapus data kegiatan
+function hapus_dataDokumentasi($id)
+{
+    global $koneksi;
+    $result = mysqli_query($koneksi, "DELETE FROM data WHERE id_data = $id");
+
+
+    return mysqli_affected_rows($koneksi);
+}
+
 
 // function upload data
 function uploadData()
