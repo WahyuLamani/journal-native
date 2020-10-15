@@ -10,12 +10,9 @@ include 'template/sidebar.php';
 include 'template/topbar.php';
 require 'functions.php';
 
-$nama = $_SESSION['nama'];
-$nip = $_SESSION['nip'];
-$jabatan = $_SESSION['jabatan'];
-$gambar = $_SESSION['gambar'];
-$wewenang = $_SESSION['role_pegawai'];
 $id = $_SESSION['id'];
+
+$data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
 
 
 
@@ -37,7 +34,7 @@ $id = $_SESSION['id'];
     <div class="row">
 
         <!-- Content Column -->
-        <div class="col-lg-9 mb-4">
+        <div class="col-lg-8 mb-4">
             <!-- Approach -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -51,7 +48,7 @@ $id = $_SESSION['id'];
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="inputEmail3" class="col-form-label">Nama </label>
+                                            <label for="inputEmail3" class="col-form-label">Nama</label>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-form-label">NIP</label>
@@ -62,25 +59,23 @@ $id = $_SESSION['id'];
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $nama; ?>">
+                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $data['nama']; ?>">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $nip; ?>">
+                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $data['nip']; ?>">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $jabatan; ?>">
+                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $data['jabatan']; ?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <img src="img/<?= $gambar; ?>" alt="..." class="img-thumbnail" width="200">
-                                        <i class="fas fa-info fa-sm fa-fw mr-2 text-gray-760" data-toggle="tooltip" data-placement="top" title="jika Anda Mengedit Data Diri, Login kembali Untuk Memperbarui !">
-                                        </i>
-
+                                        <img src="img/<?= $data['gambar']; ?>" alt="..." class="img-thumbnail" width="200">
                                     </div>
                                 </div>
-
                             </fieldset>
-                            <a href="ubah.php?id=<?= $id; ?>" class="fas fa-edit fa-sm fa-fw mr-2 text-red-400"></a>
+
+                            <a href="#ubahProfile" data-toggle="modal" class="fas fa-edit fa-lg fa-fw mr-2 text-red-400"></a>
+
 
                         </div>
                     </form>
@@ -122,7 +117,13 @@ $id = $_SESSION['id'];
 <!-- Logout Modal-->
 <?php
 include 'template/modal.php';
+include 'template/modal-ubahProfile.php';
 ?>
+
+
+
+
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

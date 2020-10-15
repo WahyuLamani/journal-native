@@ -19,6 +19,7 @@ $data = query("SELECT * FROM wewenang WHERE user_is = 'nonaktif'");
                             <th scope="col">#</th>
                             <th scope="col">Nomor Induk Pegawai</th>
                             <th scope="col">Role</th>
+                            <th scope="col">Edit</th>
 
                         </tr>
                     </thead>
@@ -28,6 +29,7 @@ $data = query("SELECT * FROM wewenang WHERE user_is = 'nonaktif'");
                                 <th scope="row"><?= $i; ?></th>
                                 <td><?= $row['nip']; ?></td>
                                 <td><?= $row['role_pegawai']; ?></td>
+                                <td><a href="hapus_pegawai.php?nip=<?= $row['nip']; ?>" onclick="return confirm('Yakin ingin Hapus data dengan NIP <?= $row['nip']; ?>?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>

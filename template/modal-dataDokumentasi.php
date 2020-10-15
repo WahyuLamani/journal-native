@@ -34,7 +34,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                                 <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
                                     </button></td>
                                 <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
-                                <th class="<?= $sesion; ?>">#</th>
+                                <th class="<?= $sesion; ?>"> <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-lg fa-fw mr-1"> </a> </th>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>

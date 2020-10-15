@@ -56,7 +56,7 @@ function registrasi($data)
     }
 
     // tambah data
-    mysqli_query($koneksi, "INSERT INTO pegawai VALUE ('','$nama', '$nip', '$password','$jabatan','')");
+    mysqli_query($koneksi, "INSERT INTO pegawai VALUE ('','$nama', '$nip', '$password','$jabatan','default.png')");
     $query = "UPDATE wewenang SET user_is = 'aktif' WHERE nip = $nip";
 
     mysqli_query($koneksi, $query);
@@ -91,10 +91,15 @@ function ubahProfile($data)
     $password = $data["password"];
     $gambarLama = htmlspecialchars($data["gambarLama"]);
 
+    $delImg = 'img/';
+    $delImg .= $gambarLama;
+
+
     //cek apakah user pilih gambar baru atau tidak
     if ($_FILES['gambar']['error'] === 4) {
         $gambar = $gambarLama;
     } else {
+        unlink($delImg);
         $gambar = upload();
     }
 
@@ -248,6 +253,17 @@ function tambahKegiatan($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+// hapus kegiatan
+function hapus_kegiatan($id)
+{
+
+    global $koneksi;
+    $result = mysqli_query($koneksi, "DELETE FROM kegiatan_pegawai WHERE id_kegiatan = $id");
+
+    return mysqli_affected_rows($koneksi);
+}
+
 
 // tambah data kegiatan
 function tambahDataKegiatan($data)
