@@ -89,9 +89,12 @@ function ubahProfile($data)
     $nip = htmlspecialchars($data["nip"]);
     $jabatan = htmlspecialchars($data["jabatan"]);
     $password = $data["password"];
+    // $gambarLama = $data["gambarLama"];
     $gambarLama = htmlspecialchars($data["gambarLama"]);
 
+    // mengalihkan gambar ke direktori
     $delImg = 'img/';
+    //  .= artinya menempel/merangkai sebuah string 
     $delImg .= $gambarLama;
 
 
@@ -99,9 +102,9 @@ function ubahProfile($data)
     if ($_FILES['gambar']['error'] === 4) {
         $gambar = $gambarLama;
     } else {
-
-        // hapus file direktori
-        unlink($delImg);
+        if ($gambarLama !== 'default.png') {
+            @unlink($delImg);
+        }
 
         $gambar = upload();
     }

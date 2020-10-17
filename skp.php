@@ -1,7 +1,10 @@
 <?php
 session_start();
-include 'template/header.php';
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
+include 'template/header.php';
+include 'template/sidebar.php';
+include 'template/topbar.php';
+
 $sesion = $_SESSION['role_pegawai'];
 if (isset($_SESSION['login'])) {
     if ($sesion == 'staff') {
@@ -11,9 +14,7 @@ if (isset($_SESSION['login'])) {
     header('location:login.php');
 }
 
-include 'template/sidebar.php';
-include 'template/topbar.php';
-require 'functions.php';
+// require 'functions.php';
 
 $data = query("SELECT * FROM skp");
 

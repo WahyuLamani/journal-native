@@ -1,7 +1,10 @@
 <?php
+if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
 date_default_timezone_set("Asia/Makassar");
-$nama = $_SESSION['nama'];
-$data = 'Selamat Datang ' . $nama;
+require 'functions.php';
+$id = $_SESSION['id'];
+
+$data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +18,7 @@ $data = 'Selamat Datang ' . $nama;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> <?= $data; ?> </title>
+    <title> Selamat Datang <?= $data['nama']; ?> </title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

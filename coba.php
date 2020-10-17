@@ -1,20 +1,12 @@
-
 <?php
-function inverse($x)
-{
-    if (!$x) {
-        throw new Exception('Division by zero.');
-    }
-    return 1 / $x;
-}
+session_start();
+$dir = 'img/5f8aaf25c5066.jpg';
 
-try {
-    echo inverse(5) . "\n";
-    echo inverse(0) . "\n";
-} catch (Exception $e) {
-    echo 'Caught exception: ',  $e->getMessage(), "\n";
-}
+// readfile($dir);
 
-// Continue execution
-echo "Hello World\n";
-?>
+if (file_exists($dir)) {
+    unlink($dir);
+    echo 'file berhasil di hapus';
+} else {
+    echo 'file tidak ada';
+}

@@ -40,7 +40,7 @@ if (isset($_POST["ubah"])) {
                             <div class="col-sm-4">
                                 <input type="hidden" name="id" value="<?= $data['id_pegawai']; ?>">
                                 <input type="hidden" name="password" value="<?= $data['password']; ?>">
-                                <input type="hidden" name="gambarLama" value="<?= $data['gambar']; ?> ">
+                                <input type="hidden" name="gambarLama" value="<?= $data['gambar']; ?>">
                                 <div class="form-group">
                                     <input type="text" name="nama" class="form-control" id="inputEmail3" value="<?= $data['nama']; ?>">
                                 </div>
@@ -61,10 +61,11 @@ if (isset($_POST["ubah"])) {
                         </div>
 
                         <button type="submit" name="ubah" class="btn btn-primary my-1">Ubah Data</button>
-
+                        <a href="ubahpassword.php?id=<?= $data['id_pegawai']; ?>" type="button" name="ubahPassword" class="btn btn-info mr-2 fa-pull-right text-white">Change Password</a>
 
                     </div>
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
