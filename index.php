@@ -1,13 +1,13 @@
 <?php
 session_start();
+if (!isset($_SESSION['login'])) {
+    header('location:login.php');
+}
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
 include 'template/header.php';
 include 'template/sidebar.php';
 include 'template/topbar.php';
 
-if (!isset($_SESSION['login'])) {
-    header('location:login.php');
-}
 
 
 

@@ -1,5 +1,9 @@
 <?php
+if (isset($_SESSION['login'])) {
+    header('location:index.php');
+}
 include 'template/log-header.php';
+
 ?>
 
 <body>

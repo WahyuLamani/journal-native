@@ -1,12 +1,8 @@
 <?php
 session_start();
-
+$sesion = $_SESSION['role_pegawai'];
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
 include 'template/header.php';
-include 'template/sidebar.php';
-include 'template/topbar.php';
-
-$sesion = $_SESSION['role_pegawai'];
 if (isset($_SESSION['login'])) {
     if ($sesion == 'staff') {
         exit('<h1><i class="fas fa-times-circle"></i> Access is Denied !!</h1>');
@@ -14,6 +10,9 @@ if (isset($_SESSION['login'])) {
 } else {
     header('location:login.php');
 }
+include 'template/sidebar.php';
+include 'template/topbar.php';
+
 
 $data = query("SELECT * FROM pegawai");
 ?>

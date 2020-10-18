@@ -1,5 +1,6 @@
 <?php
 session_start();
+define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
 include 'template/header.php';
 $sesion = $_SESSION['role_pegawai'];
 if (isset($_SESSION['login'])) {
@@ -9,7 +10,7 @@ if (isset($_SESSION['login'])) {
 } else {
     header('location:login.php');
 }
-require 'functions.php';
+
 
 $id = $_GET['id'];
 $data = query("SELECT * FROM skp WHERE id_skp = $id")[0];

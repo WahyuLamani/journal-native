@@ -17,7 +17,7 @@ if (isset($_POST["ubah"])) {
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ubah Profile</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -61,7 +61,7 @@ if (isset($_POST["ubah"])) {
                         </div>
 
                         <button type="submit" name="ubah" class="btn btn-primary my-1">Ubah Data</button>
-                        <a href="ubahpassword.php?id=<?= $data['id_pegawai']; ?>" type="button" name="ubahPassword" class="btn btn-info mr-2 fa-pull-right text-white">Change Password</a>
+                        <a href="ubahpassword.php" type="button" name="ubahPassword" class="btn btn-info mr-2 fa-pull-right text-white">ubah Password</a>
 
                     </div>
                 </form>

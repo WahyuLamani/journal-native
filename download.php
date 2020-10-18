@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION['login'])) {
+    header('location:login.php');
+}
+
 if (isset($_GET['filename'])) {
     $filename = $_GET['filename'];
 
@@ -20,8 +24,9 @@ if (isset($_GET['filename'])) {
 
         exit;
     } else {
-        echo ' <script> alert("File Tidak Tersedia !");
-        document.location.href= "input-kegiatan.php";
-        </script>';
+        echo ' <script>
+    alert("File Tidak Tersedia !");
+    document.location.href = "input-kegiatan.php";
+</script>';
     }
 }

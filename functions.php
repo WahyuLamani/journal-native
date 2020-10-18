@@ -125,6 +125,39 @@ function ubahProfile($data)
     return mysqli_affected_rows($koneksi);
 }
 
+// ubah password
+function ubahPassword($data)
+{
+    global $koneksi;
+    $nip = $data['nip'];
+    $passwordLama = $data['passwordLama'];
+    $password1 = $data['password1'];
+    $password2 = $data['password2'];
+
+    $query = query("SELECT * FROM pegawai WHERE nip = '$nip'")[0];
+    $passverif = password_verify($passwordLama, $query['password']);
+    // cek apakah pasword ada di database
+    if (!$passverif) {
+        echo "<script>
+        alert('Password Lama Anda Salah !');
+      </script>";
+        return false;
+    }
+    // cek kesamaan password 
+    if ($password1 !== $password2) {
+        echo "<script> 
+            alert('Konfirmasi Password Tidak Sesuai !');
+        </script>";
+        return false;
+    }
+
+    $password = password_hash($password1, PASSWORD_DEFAULT);
+    $query = "UPDATE pegawai SET password = '$password' WHERE nip = '$nip'";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
 
 
 
@@ -196,11 +229,16 @@ function inputSkp($data)
 // hapus SKP
 function hapus_skp($id)
 {
-
     global $koneksi;
+    $query = query("SELECT * FROM data WHERE id_skp = '$id'");
+
+    foreach ($query as $data) {
+        unlink('data/' . $data['file']);
+    }
+
+
+
     $result = mysqli_query($koneksi, "DELETE FROM skp WHERE id_skp = $id");
-
-
     return mysqli_affected_rows($koneksi);
 }
 
@@ -259,6 +297,13 @@ function tambahKegiatan($data)
 
     return mysqli_affected_rows($koneksi);
 }
+
+// ubah Kegiatan
+function ubahKegiatan($data)
+{
+}
+
+
 
 // hapus kegiatan
 function hapus_kegiatan($id)

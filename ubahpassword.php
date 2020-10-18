@@ -1,18 +1,25 @@
 <?php
 session_start();
+if (!isset($_SESSION['login'])) {
+    header('location:login.php');
+}
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
 include 'template/header.php';
 include 'template/sidebar.php';
 include 'template/topbar.php';
 
-if (!isset($_SESSION['login'])) {
-    header('location:login.php');
-}
+$nip = $_SESSION['nip'];
 
-$id = $_GET['id'];
+if (isset($_POST['ubahPassword'])) {
 
-if (isset(ubahPassword)) {
+
     if (ubahPassword($_POST) > 0) {
+        echo "<script>
+        alert('Password Berhasil Di Ubah !');
+        document.location.href= 'index.php';
+        </script>";
+    } else {
+        echo mysqli_error($koneksi);
     }
 }
 
@@ -58,7 +65,7 @@ if (isset(ubahPassword)) {
                                     </div>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="hidden" name="id" value="<?= $id; ?>">
+                                    <input type="hidden" name="nip" value="<?= $nip; ?>">
                                     <div class="form-group">
                                         <input type="password" name="passwordLama" class="form-control" id="inputEmail3">
                                     </div>

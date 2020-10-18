@@ -14,7 +14,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
 
             <!-- Topbar Search -->
             <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-                <h4>SELAMAT DATANG DI WEBSITE POLITEKNIK MANADO</h4>
+                <h4>JOURNAL WEB POLITEKNIK MANADO</h4>
             </div>
 
             <!-- Topbar Navbar -->
@@ -42,10 +42,10 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile
                         </a>
-                        <a class="dropdown-item" href="#">
+                        <!-- <a class="dropdown-item" href="#">
                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                             Settings
-                        </a>
+                        </a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

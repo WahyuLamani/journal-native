@@ -1,28 +1,25 @@
 <?php
 session_start();
-
+if (!isset($_SESSION['login'])) {
+    header('location:login.php');
+}
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
 include 'template/header.php';
 include 'template/sidebar.php';
 include 'template/topbar.php';
 
+
 $nip = $_SESSION['nip'];
 $sesion = $_SESSION['role_pegawai'];
-if (isset($_SESSION['login'])) {
+if ($sesion == 'staff') {
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 
-    if ($sesion == 'staff') {
-        $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
-
-        $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
-    } else {
-        $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
-
-        $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
-    }
+    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 } else {
-    header('location:login.php');
-}
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
 
+    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+}
 
 
 
@@ -84,7 +81,7 @@ if (isset($_SESSION['login'])) {
                                 <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
                                 <td><?= $row['kegiatan']; ?></td>
                                 <td><?= $row['tanggal']; ?></td>
-                                <td><a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
+                                <td><a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1"></a>|<a href="ubah_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>

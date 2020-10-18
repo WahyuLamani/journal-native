@@ -1,11 +1,8 @@
 <?php
 session_start();
+$sesion = $_SESSION['role_pegawai'];
 define("BASEPATH", gethostbyaddr($_SERVER['REMOTE_ADDR']));
 include 'template/header.php';
-include 'template/sidebar.php';
-include 'template/topbar.php';
-
-$sesion = $_SESSION['role_pegawai'];
 if (isset($_SESSION['login'])) {
     if ($sesion == 'staff') {
         exit('<h1><i class="fas fa-times-circle"></i> Access is Denied !!</h1>');
@@ -13,8 +10,10 @@ if (isset($_SESSION['login'])) {
 } else {
     header('location:login.php');
 }
+include 'template/sidebar.php';
+include 'template/topbar.php';
 
-// require 'functions.php';
+
 
 $data = query("SELECT * FROM skp");
 
@@ -94,7 +93,7 @@ if (isset($_POST["inputskp"])) {
                                     <th scope="row"><?= $i; ?></th>
                                     <td><?= $row['uraian']; ?></td>
                                     <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
-                                    <td> <a href="ubah_skp.php?id=<?= $row['id_skp']; ?>" class="fas fa-pen fa-sm fa-fw mr-1"> </a>|<a href="hapus_skp.php?id=<?= $row['id_skp']; ?>" onclick="return confirm('Yakin Ingin Hapus data ?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
+                                    <td><a href="ubah_skp.php?id=<?= $row['id_skp']; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a>|<a href="hapus_skp.php?id=<?= $row['id_skp']; ?>" onclick="return confirm('Yakin Ingin Hapus data ?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
                                 </tr>
                                 <?php $i++; ?>
                             <?php endforeach; ?>
