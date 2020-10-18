@@ -45,8 +45,10 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Item List</h6>
-                        <a class="collapse-item" href="input-kegiatan.php
+                        <a class="collapse-item" href="kegiatan.php
                         ">Aktivitas !!</a>
+                        <a class="collapse-item" href="dokumentasi.php
+                        ">Dokumentasi !!</a>
                     </div>
                 </div>
             </li>

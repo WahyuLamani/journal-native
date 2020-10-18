@@ -16,7 +16,8 @@ $id = $_GET['id'];
 $data = query("SELECT * FROM skp WHERE id_skp = $id")[0];
 
 if (isset($_POST["ubahskp"])) {
-
+    // var_dump($_POST);
+    // die;
     if (ubahSkp($_POST) > 0) {
         echo "<script>
                 alert('Data Berhasil Di Ubah !');

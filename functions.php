@@ -248,12 +248,13 @@ function ubahSkp($data)
     global $koneksi;
     $id = $data['id'];
     $uraian = htmlspecialchars($data['uraian']);
-    $target = $data['target'];
+    $target = htmlspecialchars($data['target']);
     $satuan = htmlspecialchars($data['satuan']);
 
     $query = "UPDATE skp SET
             id_skp = $id,
             uraian = '$uraian',
+            target = '$target',
             satuan = '$satuan'
             WHERE id_skp = $id
             ";
@@ -266,8 +267,12 @@ function ubahSkp($data)
 // hapus pegawai
 function hapus_pegawai($id)
 {
-
     global $koneksi;
+    $hapus = query("SELECT gambar FROM pegawai WHERE nip = $id")[0];
+    if ($hapus['gambar'] !== 'default.png') {
+        unlink('img/' . $hapus['gambar']);
+    }
+
     $result = mysqli_query($koneksi, "DELETE FROM wewenang WHERE nip = $id");
 
     return mysqli_affected_rows($koneksi);
@@ -301,6 +306,22 @@ function tambahKegiatan($data)
 // ubah Kegiatan
 function ubahKegiatan($data)
 {
+    global $koneksi;
+    $id_kegiatan = $data['id_kegiatan'];
+    $id_skp = $data['id_skp'];
+    $kegiatan = htmlspecialchars($data['kegiatan']);
+    $tanggal = $data['tanggal'];
+
+    $query = "UPDATE kegiatan_pegawai SET
+            id_skp = $id_skp,
+            kegiatan = '$kegiatan',
+            tanggal = '$tanggal'
+            WHERE id_kegiatan = $id_kegiatan;
+    ";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
 }
 
 
@@ -396,7 +417,7 @@ function uploadData()
     // buat nama file baru agar tidak tertimpa
     $namaFileBaru = $namabaru;
     $namaFileBaru .= ' ';
-    $namaFileBaru .= substr(str_shuffle($valueRandom), 0, 5);
+    $namaFileBaru .= substr(str_shuffle($valueRandom), 0, 2);
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiData;
 

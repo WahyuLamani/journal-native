@@ -13,12 +13,8 @@ $nip = $_SESSION['nip'];
 $sesion = $_SESSION['role_pegawai'];
 if ($sesion == 'staff') {
     $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
-
-    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 } else {
     $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
-
-    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
 }
 
 
@@ -44,10 +40,8 @@ if ($sesion == 'staff') {
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
-            <button data-toggle="modal" data-target="#Modal-output-dataKegiatan" class="btn btn-warning mt-3 fa-pull-right">Lihat Data Dokumentasi</button>
             <div class="media">
                 <button data-toggle="modal" data-target="#Modal-input-kegiatan" class="btn btn-primary mt-3 mr-3">Tambah Kegiatan Hari Ini</button>
-                <button data-toggle="modal" data-target="#Modal-input-dataKegiatan" class="btn btn-primary mt-3 mr-3">Tambah Hasil Dokumentasi</button>
             </div>
         </div>
         <div class="card-body">
@@ -75,13 +69,13 @@ if ($sesion == 'staff') {
                     </tfoot>
                     <tbody>
                         <tr><?php foreach ($data as $row) : ?>
-                                <td class="<?= $sesion; ?>"><?= $row['nama']; ?></td>
+                                <th class="<?= $sesion; ?>"><?= $row['nama']; ?></th>
                                 <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
                                     </button></td>
                                 <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
                                 <td><?= $row['kegiatan']; ?></td>
                                 <td><?= $row['tanggal']; ?></td>
-                                <td><a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1"></a>|<a href="ubah_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a></td>
+                                <td><a href="ubah_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a> <a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $_SESSION['role_pegawai']; ?>"></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -121,7 +115,6 @@ if ($sesion == 'staff') {
 include 'template/modal.php';
 include 'template/modal-inputKegiatan.php';
 include 'template/modal-inputDataKegiatan.php';
-include 'template/modal-dataDokumentasi.php';
 
 ?>
 
