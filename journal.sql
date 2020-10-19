@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Okt 2020 pada 16.08
+-- Waktu pembuatan: 19 Okt 2020 pada 08.25
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -33,16 +33,17 @@ CREATE TABLE `data` (
   `id_skp` int(11) NOT NULL,
   `nip` varchar(18) NOT NULL,
   `file` varchar(256) NOT NULL,
-  `tanggal_data` varchar(50) NOT NULL
+  `tanggal_data` varchar(50) NOT NULL,
+  `ket` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `data`
 --
 
-INSERT INTO `data` (`id_data`, `id_skp`, `nip`, `file`, `tanggal_data`) VALUES
-(3, 13, '17024051', 'aaaaa', '11'),
-(4, 13, '17024051', 'bbbb', '12');
+INSERT INTO `data` (`id_data`, `id_skp`, `nip`, `file`, `tanggal_data`, `ket`) VALUES
+(14, 15, '17024051', 'Pengumuman efkw2.pdf', ' 2020-10-18 20:22:22', ''),
+(15, 16, '789', 'RINGKASAN PRAKTEK je.pdf', ' 2020-10-18 20:41:53', '');
 
 -- --------------------------------------------------------
 
@@ -63,10 +64,9 @@ CREATE TABLE `kegiatan_pegawai` (
 --
 
 INSERT INTO `kegiatan_pegawai` (`id_kegiatan`, `nip`, `id_skp`, `kegiatan`, `tanggal`) VALUES
-(3, '17024051', 13, 'merumuskan laporan', '11'),
-(4, '17024051', 13, 'memfalidasi laporan', '12'),
-(7, '17024051', 14, 'test', ' 2020-10-13 21:43:09'),
-(8, '789', 13, 'test2\r\n', ' 2020-10-13 21:49:17');
+(10, '678', 15, ' kegiatan pegawai', ' 2020-10-18 19:51:07'),
+(11, '678', 16, 'kegiatan 2', ' 2020-10-14 14:30:49'),
+(14, '789', 16, 'yang di lakukan hari ini adalah menginisialisasi data data terdahulu ', ' 2020-10-14 16:59:10');
 
 -- --------------------------------------------------------
 
@@ -88,9 +88,9 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `nip`, `password`, `jabatan`, `gambar`) VALUES
-(9, 'Wahyu Lamani', '17024051', '$2y$10$/8gpRU1Nab2OR5LBbNxQl.SW2vVnjDcmdMijZx5u.9JtmK7OMHin2', 'mahasiswa', '5f7b31d3c3b8a.jpg '),
-(23, 'staff', '789', '$2y$10$DEB0BA.ovIt0x/yTmHUci.J5pjIcGkNgFt.7eyIpSuxGICPa8bfBm', 'staff', '5f84287914f36.jpg'),
-(33, 'Admin', '678', '$2y$10$G/Ev4k8hn2XxVdaxMYiRneLX57g8YOZ5OuvIBLMO9.W7GaI7bf5l6', 'admin', '');
+(9, 'wahyu lamani', '17024051', '$2y$10$/8gpRU1Nab2OR5LBbNxQl.SW2vVnjDcmdMijZx5u.9JtmK7OMHin2', 'mahasiswa', '5f8ac36dd6988.png'),
+(23, 'staff', '789', '$2y$10$DEB0BA.ovIt0x/yTmHUci.J5pjIcGkNgFt.7eyIpSuxGICPa8bfBm', 'staff', '5f8ac82655f69.jpg'),
+(33, 'Admin', '678', '$2y$10$Z0JHwPXOP/TFe9keJu7wqeWhwxaVU.b5hG1ORvgtlMUbDIM637Jui', 'admin', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -110,8 +110,8 @@ CREATE TABLE `skp` (
 --
 
 INSERT INTO `skp` (`id_skp`, `uraian`, `target`, `satuan`) VALUES
-(13, 'merumuskan laporan akuntabilitas kinerja instansi pemerintah (LAKIP) tahun 2019', 1, 'dokumen'),
-(14, 'merumuskan program an kegiatan bagian perencanaan, kerjasama dan humas', 1, 'dokumen');
+(15, 'Merumuskan Revisi RENSTRA 2019-2020', 1, 'dokumen'),
+(16, 'Merumuskan dokumen perencanaan pengangguran', 1, 'dokumen');
 
 -- --------------------------------------------------------
 
@@ -130,11 +130,11 @@ CREATE TABLE `wewenang` (
 --
 
 INSERT INTO `wewenang` (`nip`, `role_pegawai`, `user_is`) VALUES
-('031299', 'admin', 'nonaktif'),
+('12345', 'staff', 'nonaktif'),
 ('17024051', 'admin', 'aktif'),
-('197003091990111000', 'admin', 'nonaktif'),
 ('678', 'admin', 'aktif'),
-('789', 'staff', 'aktif');
+('789', 'staff', 'aktif'),
+('890', 'staff', 'nonaktif');
 
 --
 -- Indexes for dumped tables
@@ -183,25 +183,25 @@ ALTER TABLE `wewenang`
 -- AUTO_INCREMENT untuk tabel `data`
 --
 ALTER TABLE `data`
-  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `kegiatan_pegawai`
 --
 ALTER TABLE `kegiatan_pegawai`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_pegawai` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `skp`
 --
 ALTER TABLE `skp`
-  MODIFY `id_skp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_skp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
