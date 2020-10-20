@@ -41,7 +41,8 @@ if ($sesion == 'staff') {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Menu <a href="cetak-dokumentasi.php" target="_blank" type="button" class="btn btn-primary fas fa-file-excel text-white fa-pull-right"></a></h6>
+
             <div class="media">
                 <button data-toggle="modal" data-target="#Modal-input-dataKegiatan" class="btn btn-primary mt-3 mr-3">Tambah Hasil Dokumentasi</button>
             </div>
@@ -58,26 +59,28 @@ if ($sesion == 'staff') {
                             <th scope="col">SKP</th>
                             <th scope="col">Target</th>
                             <th scope="col">Pesan</th>
-                            <th width="75"">Menu</th>
+                            <th width="56">Menu</th>
                         </tr>
                     </thead>
                     <?php $i = 1; ?>
                     <tbody><?php foreach ($data1 as $row) : ?>
                             <tr>
-                            <th class=" <?= $sesion; ?>"><?= $row['nama']; ?></th>
-                            <td><?= $row['tanggal_data']; ?></td>
-                            <td><?= $row['file']; ?></td>
-                            <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
-                                </button></td>
-                            <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
-                            <td><?= $row['ket']; ?></td>
-                            <th>
-                                <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-sm fa-fw mr-1"> </a>
-                                <a href="hapus_dataDokumentasi.php?id=<?= $row['id_data']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $sesion; ?>"> </a>
-                            </th>
-                        </tr>
-                        <?php $i++; ?>
-                    <?php endforeach; ?>
+                                <th class=" <?= $sesion; ?>"><?= $row['nama']; ?></th>
+                                <td><?= $row['tanggal_data']; ?></td>
+                                <td><?= $row['file']; ?></td>
+                                <!-- <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="">Jenis SKP
+                                </button></td> -->
+                                <td><?= $row['uraian']; ?></td>
+                                <td><?= substr($row['target'] . ' ' . $row['satuan'], 0, 5); ?></td>
+                                <td><?= $row['ket']; ?></td>
+                                <th>
+                                    <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-sm fa-fw mr-1"></a>
+                                    <a href="getHalaman.php?id=<?= $row['id_data']; ?>&hal=<?= 'ubah_dokumentasi.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a>
+                                    <a href="hapus_dataDokumentasi.php?id=<?= $row['id_data']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $sesion; ?>"></a>
+                                </th>
+                            </tr>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -128,6 +131,8 @@ include 'template/modal-inputDataKegiatan.php';
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+<!-- <script src="js/all.js"></script> -->
+
 
 <!-- Page level plugins -->
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
@@ -138,10 +143,9 @@ include 'template/modal-inputDataKegiatan.php';
 <script>
     $('.admin').show();
     $('.staff').hide();
-    // $('[name="nama"]').hide();
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
     });
 </script>
 </body>

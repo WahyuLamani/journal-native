@@ -81,9 +81,7 @@ include 'template/topbar.php';
         <!-- col-lg-3 -->
     </div>
 </div>
-</div>
 
-</div>
 <!-- /.container-fluid -->
 
 </div>
@@ -140,11 +138,6 @@ include 'template/modal-ubahProfile.php';
 <script>
     $('.admin').show();
     $('.staff').hide();
-    // $('[name="nama"]').hide();
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-
-    });
 </script>
 
 

@@ -4,9 +4,13 @@ if (isset($_POST["tambahkegiatan"])) {
     if (tambahKegiatan($_POST) > 0) {
         echo "<script>
                 alert('Data Berhasil Di Tambahkan !');
+                document.location.href= 'kegiatan.php';
             </script>";
     } else {
-        echo mysqli_error($koneksi);
+        echo "<script>
+                alert('Data Gagal Di Tambahkan !');
+                document.location.href= 'kegiatan.php';
+            </script>";
     }
 }
 ?>

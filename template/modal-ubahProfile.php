@@ -6,9 +6,13 @@ if (isset($_POST["ubah"])) {
     if (ubahProfile($_POST) > 0) {
         echo "<script>
                 alert('Data Berhasil Di Ubah !');
+                document.location.href= 'index.php';
             </script>";
     } else {
-        echo mysqli_error($koneksi);
+        echo "<script>
+        alert('Data Gagal Di Ubah !');
+        document.location.href= 'index.php';
+    </script>";
     }
 }
 ?>

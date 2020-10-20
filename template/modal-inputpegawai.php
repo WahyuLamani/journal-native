@@ -5,9 +5,13 @@ if (isset($_POST["tambahDataPegawai"])) {
     if (tambahPegawai($_POST) > 0) {
         echo "<script>
                 alert('Data Berhasil Di Tambahkan !');
+                document.location.href= 'pegawai.php';
             </script>";
     } else {
-        echo mysqli_error($koneksi);
+        echo "<script>
+                alert('Data Gagal Di Tambahkan !');
+                document.location.href= 'pegawai.php';
+            </script>";
     }
 }
 ?>
@@ -36,8 +40,8 @@ if (isset($_POST["tambahDataPegawai"])) {
                                 <div class="form-group">
                                     <select id="inputState" name="role" class="form-control">
                                         <option selected>Pegawai Sebagai</option>
-                                        <option value="admin">admin</option>
-                                        <option value="staff">staff</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="staff">Staf</option>
                                     </select>
                                 </div>
                                 <button type="submit" name="tambahDataPegawai" class="btn btn-primary fa-pull-right">Tambah Pegawai</button>

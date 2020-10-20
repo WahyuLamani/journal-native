@@ -39,22 +39,22 @@ if ($sesion == 'staff') {
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Menu</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Menu <a href="cetak-kegiatan.php" target="_blank" type="button" class="btn btn-primary fas fa-file-excel text-white fa-pull-right"></a></h6>
             <div class="media">
                 <button data-toggle="modal" data-target="#Modal-input-kegiatan" class="btn btn-primary mt-3 mr-3">Tambah Kegiatan Hari Ini</button>
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered myTable" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th class="<?= $sesion; ?>">Nama</th>
                             <th>Jenis SKP</th>
                             <th>Target</th>
-                            <th>Aktivitas Anda</th>
+                            <th>Aktivitas</th>
                             <th>Tanggal</th>
-                            <th>Edit</th>
+                            <th width="30">Edit</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -62,7 +62,7 @@ if ($sesion == 'staff') {
                             <th class="<?= $sesion; ?>">Nama</th>
                             <th>Jenis SKP</th>
                             <th>Target</th>
-                            <th>Aktivitas Anda</th>
+                            <th>Aktivitas</th>
                             <th>Tanggal</th>
                             <th>Edit</th>
                         </tr>
@@ -70,12 +70,11 @@ if ($sesion == 'staff') {
                     <tbody>
                         <tr><?php foreach ($data as $row) : ?>
                                 <th class="<?= $sesion; ?>"><?= $row['nama']; ?></th>
-                                <td><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="<?= $row['uraian']; ?>">Jenis SKP
-                                    </button></td>
-                                <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
+                                <td><?= $row['uraian']; ?></td>
+                                <td><?= substr($row['target'] . ' ' . $row['satuan'], 0, 5); ?></td>
                                 <td><?= $row['kegiatan']; ?></td>
                                 <td><?= $row['tanggal']; ?></td>
-                                <td><a href="ubah_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a> <a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $_SESSION['role_pegawai']; ?>"></a></td>
+                                <td><a href="getHalaman.php?id=<?= $row['id_kegiatan']; ?>&hal=<?= 'ubah_kegiatan.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"><a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $_SESSION['role_pegawai']; ?>"></a></a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -133,16 +132,13 @@ include 'template/modal-inputDataKegiatan.php';
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
+
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
 <script>
     $('.admin').show();
     $('.staff').hide();
-    // $('[name="nama"]').hide();
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-
-    });
 </script>
 </body>
 

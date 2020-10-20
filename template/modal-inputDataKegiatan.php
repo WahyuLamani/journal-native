@@ -4,9 +4,13 @@ if (isset($_POST["tambahDataKegiatan"])) {
     if (tambahDataKegiatan($_POST) > 0) {
         echo "<script>
                 alert('Data Berhasil Di Tambahkan !');
+                document.location.href= 'dokumentasi.php';
             </script>";
     } else {
-        echo mysqli_error($koneksi);
+        echo "<script>
+                alert('Data Gagal Di Tambahkan !');
+                document.location.href= 'dokumentasi.php';
+            </script>";
     }
 }
 ?>
@@ -38,7 +42,10 @@ if (isset($_POST["tambahDataKegiatan"])) {
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Pilih Hasil Dokumentasi</label>
-                        <input type="file" name="data" class="form-control-file" id="exampleFormControlFile1">
+                        <div class="custom-file">
+                            <input type="file" name="data" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Pilih File</label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput">Keterangan :</label>

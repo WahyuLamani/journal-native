@@ -102,11 +102,14 @@ function ubahProfile($data)
     if ($_FILES['gambar']['error'] === 4) {
         $gambar = $gambarLama;
     } else {
-        if ($gambarLama !== 'default.png') {
-            @unlink($delImg);
-        }
-
         $gambar = upload();
+        if ($gambar === false) {
+            return false;
+        } else {
+            if ($gambarLama !== 'default.png') {
+                @unlink($delImg);
+            }
+        }
     }
 
 
@@ -217,6 +220,13 @@ function inputSkp($data)
     $target = $data['target'];
     $satuan = htmlspecialchars($data['satuan']);
 
+    if (empty($uraian) || empty($target) || empty($satuan)) {
+        echo "<script>
+				alert('Tolong Tambah Data Dengan Lengkap !');
+			  </script>";
+        return false;
+    }
+
     $query = "INSERT INTO skp
 			VALUES
 			('','$uraian','$target','$satuan')";
@@ -251,6 +261,14 @@ function ubahSkp($data)
     $target = htmlspecialchars($data['target']);
     $satuan = htmlspecialchars($data['satuan']);
 
+
+
+    if (empty($uraian) || empty($target) || empty($satuan)) {
+        echo "<script>
+				alert('Tolong Input Data Dengan Lengkap !');
+			  </script>";
+        return false;
+    }
     $query = "UPDATE skp SET
             id_skp = $id,
             uraian = '$uraian',
@@ -259,7 +277,7 @@ function ubahSkp($data)
             WHERE id_skp = $id
             ";
 
-    mysqli_query($koneksi, $query);
+    $cek = mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
 }
@@ -312,12 +330,13 @@ function ubahKegiatan($data)
     $kegiatan = htmlspecialchars($data['kegiatan']);
     $tanggal = $data['tanggal'];
 
+
+
     $query = "UPDATE kegiatan_pegawai SET
             id_skp = $id_skp,
             kegiatan = '$kegiatan',
             tanggal = '$tanggal'
-            WHERE id_kegiatan = $id_kegiatan;
-    ";
+            WHERE id_kegiatan = $id_kegiatan";
 
     mysqli_query($koneksi, $query);
 
@@ -367,6 +386,54 @@ function tambahDataKegiatan($data)
     return mysqli_affected_rows($koneksi);
 }
 
+// ubah Data Kegiatan
+function ubahDataKegiatan($data)
+{
+    global $koneksi;
+    $id = $data['id_data'];
+    $nip = htmlspecialchars($data['nip']);
+    $ket = htmlspecialchars($data['ket']);
+    $dataLama = $data['dataLama'];
+    $id_skp = $data['id_skp'];
+    $tanggal = $data['tanggal_data'];
+
+
+
+    if ($id_skp < 1) {
+        echo "<script>
+				alert('Pilih SKP !');
+			  </script>";
+        return false;
+    }
+    // cek apakah ada data yang di upload
+    if ($_FILES['data']['error'] === 4) {
+        $data = $dataLama;
+    } else {
+
+        $data = uploadData();
+
+        if ($data === false) {
+            return false;
+        } else {
+            // hapus file lama
+            @unlink('data/' . $dataLama);
+        }
+    }
+    $query = "UPDATE data SET
+    id_skp = $id_skp,
+    nip = '$nip',
+    file = '$data',
+    tanggal_data = '$tanggal',
+    ket = '$ket'
+    WHERE id_data = $id";
+
+    mysqli_query($koneksi, $query);
+
+
+
+    return mysqli_affected_rows($koneksi);
+}
+
 // hapus data kegiatan
 function hapus_dataDokumentasi($id)
 {
@@ -381,7 +448,7 @@ function hapus_dataDokumentasi($id)
 // function upload data
 function uploadData()
 {
-    $valueRandom = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $valueRandom = 'QWERTYUIPSDFGHJKLZXCVBNM';
     $namaFile = $_FILES['data']['name'];
     $ukuranFile = $_FILES['data']['size'];
     $error = $_FILES['data']['error'];
@@ -396,7 +463,7 @@ function uploadData()
     }
 
     //cek apakah yang di upload adalah gambar
-    $ekstensiDataValid = ['jpg', 'jpeg', 'png', 'docx', 'doc', 'pdf'];
+    $ekstensiDataValid = ['jpg', 'jpeg', 'png', 'docx', 'doc', 'xls', 'pdf'];
     $ekstensiData = explode('.', $namaFile);
     $namabaru = $ekstensiData[0];
     $ekstensiData = strtolower(end($ekstensiData));
@@ -407,7 +474,7 @@ function uploadData()
         return false;
     }
     //cek ukuran gambar
-    if ($ukuranFile > 2500000) {
+    if ($ukuranFile > 3000000) {
         echo "<script>
 				alert('Ukuran file terlalu besar');
 			  </script>";
@@ -416,7 +483,7 @@ function uploadData()
     //lolos pengecekan format dan ukuran, upload gambar ke database
     // buat nama file baru agar tidak tertimpa
     $namaFileBaru = $namabaru;
-    $namaFileBaru .= ' ';
+    $namaFileBaru .= '_';
     $namaFileBaru .= substr(str_shuffle($valueRandom), 0, 2);
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiData;

@@ -22,7 +22,7 @@ if (isset($_GET['filename'])) {
     } else {
         echo ' <script>
     alert("File Tidak Tersedia !");
-    document.location.href = "input-kegiatan.php";
+    document.location.href = "dokumentasi.php";
 </script>';
     }
 }
