@@ -75,12 +75,15 @@ function tambahPegawai($data)
     global $koneksi;
     $nip = htmlspecialchars($data['nip']);
     $role = $data['role'];
+    $id_sub_bagian = $data['id_sub_bagian'];
+
 
     $query = "INSERT INTO wewenang
 			VALUES
 			('$nip','$role','nonaktif')";
 
     mysqli_query($koneksi, $query);
+    mysqli_query($koneksi, "INSERT INTO unit_kerja VALUES('',$id_sub_bagian,'$nip')");
 
     return mysqli_affected_rows($koneksi);
 }
@@ -244,6 +247,7 @@ function inputSkp($data)
     $uraian = htmlspecialchars($data['uraian']);
     $target = $data['target'];
     $satuan = htmlspecialchars($data['satuan']);
+    $id_bagian = $data['id_bagian'];
 
     if (empty($uraian) || empty($target) || empty($satuan)) {
         echo "<script>
@@ -254,7 +258,7 @@ function inputSkp($data)
 
     $query = "INSERT INTO skp
 			VALUES
-			('','$uraian','$target','$satuan')";
+			('','$id_bagian','$uraian','$target','$satuan')";
 
     mysqli_query($koneksi, $query);
 
@@ -311,9 +315,14 @@ function ubahSkp($data)
 function hapus_pegawai($id)
 {
     global $koneksi;
-    $hapus = query("SELECT gambar FROM pegawai WHERE nip = $id")[0];
-    if ($hapus['gambar'] !== 'default.png') {
-        unlink('img/' . $hapus['gambar']);
+    $return = mysqli_query($koneksi, "SELECT gambar FROM pegawai WHERE nip = $id");
+    $cek = mysqli_num_rows($return);
+
+    if ($cek > 0) {
+        $hapus = mysqli_fetch_assoc($return);
+        if ($hapus['gambar'] !== 'default.png') {
+            @unlink('img/' . $hapus['gambar']);
+        }
     }
 
     $result = mysqli_query($koneksi, "DELETE FROM wewenang WHERE nip = $id");

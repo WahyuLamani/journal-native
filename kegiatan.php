@@ -12,9 +12,11 @@ include 'template/topbar.php';
 $nip = $_SESSION['nip'];
 $sesion = $_SESSION['role_pegawai'];
 if ($sesion == 'staff') {
-    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, unit_kerja.id_sub_bagian, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)INNER JOIN unit_kerja USING (nip) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian AND pegawai.nip = $nip");
+    // $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 } else {
-    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+    // $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, unit_kerja.id_sub_bagian, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, unit_kerja.id_sub_bagian, sub_bagian.uraian AS sub_uraian FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE skp.id_bagian = $id_bagian");
 }
 
 
@@ -49,34 +51,26 @@ if ($sesion == 'staff') {
                 <table class="table table-bordered myTable" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th class="<?= $sesion; ?>">Nama</th>
-                            <th>Jenis SKP</th>
-                            <th>Target</th>
-                            <th>Aktivitas</th>
-                            <th>Tanggal</th>
-                            <th width="30">Edit</th>
+                            <th scope="col" class="<?= $sesion; ?>">Nama</th>
+                            <th scope="col">Jenis SKP</th>
+                            <th scope="col">Target</th>
+                            <th scope="col">Aktivitas</th>
+                            <th scope="col" class="<?= $sesion; ?>">Sub Bagian</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col" width="30">Edit</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th class="<?= $sesion; ?>">Nama</th>
-                            <th>Jenis SKP</th>
-                            <th>Target</th>
-                            <th>Aktivitas</th>
-                            <th>Tanggal</th>
-                            <th>Edit</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr><?php foreach ($data as $row) : ?>
+                    <tbody><?php foreach ($data as $row) : ?>
+                            <tr>
                                 <th class="<?= $sesion; ?>"><?= $row['nama']; ?></th>
                                 <td><?= $row['uraian']; ?></td>
                                 <td><?= substr($row['target'] . ' ' . $row['satuan'], 0, 5); ?></td>
                                 <td><?= $row['kegiatan']; ?></td>
+                                <th scope="col" class="<?= $sesion; ?>"><?= $row['sub_uraian']; ?></th>
                                 <td><?= $row['tanggal']; ?></td>
                                 <td><a href="getHalaman.php?id=<?= $row['id_kegiatan']; ?>&hal=<?= 'ubah_kegiatan.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"><a href="hapus_kegiatan.php?id=<?= $row['id_kegiatan']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $_SESSION['role_pegawai']; ?>"></a></a></td>
-                        </tr>
-                    <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

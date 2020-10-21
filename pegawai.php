@@ -14,7 +14,8 @@ include 'template/sidebar.php';
 include 'template/topbar.php';
 
 
-$data = query("SELECT * FROM pegawai");
+
+$data = query("SELECT pegawai.*, unit_kerja.id_sub_bagian, sub_bagian.id_bagian FROM pegawai INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE id_bagian = '$id_bagian'");
 ?>
 
 <!-- Begin Page Content -->

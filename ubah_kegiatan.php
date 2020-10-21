@@ -54,7 +54,7 @@ $data = query("SELECT * FROM kegiatan_pegawai WHERE id_kegiatan = $id")[0];
                             <?php $valskp = $data['id_skp'];
                             $skpselect = query("SELECT * FROM skp WHERE id_skp = $valskp")[0]; ?>
                             <option selected value="<?= $skpselect['id_skp']; ?>"><?= $skpselect['uraian']; ?></option>
-                            <?php $skp = query("SELECT * FROM skp"); ?>
+                            <?php $skp = query("SELECT * FROM skp WHERE id_bagian = $id_bagian"); ?>
                             <?php $i = 1; ?>
                             <?php foreach ($skp as $row) : ?>
                                 <option value="<?= $row['id_skp']; ?>"><?= $i . '. ' . $row['uraian']; ?></option>

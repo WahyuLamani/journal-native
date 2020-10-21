@@ -15,7 +15,7 @@ include 'template/topbar.php';
 
 
 
-$data = query("SELECT * FROM skp");
+$data = query("SELECT * FROM skp WHERE id_bagian = $id_bagian");
 
 
 if (isset($_POST["inputskp"])) {
@@ -56,6 +56,7 @@ if (isset($_POST["inputskp"])) {
                             <label for="exampleFormControlTextarea1">Sasaran Kerja</label>
                             <textarea name="uraian" class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="......."></textarea>
                         </div>
+                        <input type="hidden" name="id_bagian" value="<?= $id_bagian; ?>">
                         <div class="form-group col-lg-6">
                             <label for="exampleFormControlInput1">Target Kerja</label>
                             <input type="number" name="target" class="form-control" id="exampleFormControlInput1" placeholder="Input Angka">

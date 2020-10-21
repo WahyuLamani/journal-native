@@ -35,7 +35,7 @@ function kelola_data()
     global $nip;
     global $passverif;
     if ($passverif === true) {
-        $level = mysqli_query($koneksi, "SELECT * FROM wewenang WHERE nip = '$nip'");
+        $level = mysqli_query($koneksi, "SELECT wewenang.nip, wewenang.role_pegawai, unit_kerja.id_sub_bagian, sub_bagian.id_bagian FROM wewenang INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian)  WHERE wewenang.nip = '$nip'");
 
         $cek = mysqli_num_rows($level);
 
@@ -49,6 +49,8 @@ function kelola_data()
                 // buat session login dan username
                 $_SESSION['nip'] = $nip;
                 $_SESSION['role_pegawai'] = "admin";
+                $_SESSION['id_sub_bagian'] = $data['id_sub_bagian'];
+                $_SESSION['id_bagian'] = $data['id_bagian'];
                 // alihkan ke halaman dashboard admin
                 header("location:index.php");
 
@@ -57,6 +59,8 @@ function kelola_data()
                 // buat session login dan nip
                 $_SESSION['nip'] = $nip;
                 $_SESSION['role_pegawai'] = "staff";
+                $_SESSION['id_sub_bagian'] = $data['id_sub_bagian'];
+                $_SESSION['id_bagian'] = $data['id_bagian'];
                 // alihkan ke halaman dashboard operator
                 header("location:index.php");
 

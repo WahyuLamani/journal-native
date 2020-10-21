@@ -10,7 +10,7 @@ include 'template/topbar.php';
 
 
 
-
+$sub_bagian = query("SELECT unit_kerja.id_sub_bagian, sub_bagian.* FROM unit_kerja INNER JOIN sub_bagian USING (id_sub_bagian) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian")[0];
 
 ?>
 
@@ -30,7 +30,7 @@ include 'template/topbar.php';
     <div class="row">
 
         <!-- Content Column -->
-        <div class="col-lg-8 mb-4">
+        <div class="col-lg-9 mb-4">
             <!-- Approach -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -42,7 +42,7 @@ include 'template/topbar.php';
                         <div class="container">
                             <fieldset disabled>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-form-label">Nama</label>
                                         </div>
@@ -52,8 +52,11 @@ include 'template/topbar.php';
                                         <div class="form-group">
                                             <label for="inputEmail3" class="col-form-label">Jabatan</label>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-form-label">Unit Kerja</label>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="inputEmail3" value="<?= $data['nama']; ?>">
                                         </div>
@@ -63,9 +66,12 @@ include 'template/topbar.php';
                                         <div class="form-group">
                                             <input type="email" class="form-control" id="inputEmail3" value="<?= $data['jabatan']; ?>">
                                         </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="inputEmail3" value="<?= $sub_bagian['uraian']; ?>">
+                                        </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <img src="img/<?= $data['gambar']; ?>" alt="..." class="img-thumbnail" width="200">
+                                        <img src="img/<?= $data['gambar']; ?>" alt="..." class="img-thumbnail" width="250">
                                     </div>
                                 </div>
                             </fieldset>

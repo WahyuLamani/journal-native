@@ -3,6 +3,8 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
 date_default_timezone_set("Asia/Makassar");
 require 'functions.php';
 $id = $_SESSION['id'];
+$id_bagian = $_SESSION['id_bagian'];
+$id_sub_bagian = $_SESSION['id_sub_bagian'];
 
 $data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
 

@@ -13,10 +13,12 @@ $nip = $_SESSION['nip'];
 $sesion = $_SESSION['role_pegawai'];
 if ($sesion == 'staff') {
 
-    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
+    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, unit_kerja.id_sub_bagian FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) INNER JOIN unit_kerja USING (nip) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian AND pegawai.nip = $nip");
+    // $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 } else {
 
-    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan,skp.id_bagian, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE skp.id_bagian = $id_bagian");
+    // $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
 }
 
 
@@ -73,11 +75,11 @@ if ($sesion == 'staff') {
                                 <td><?= $row['uraian']; ?></td>
                                 <td><?= substr($row['target'] . ' ' . $row['satuan'], 0, 5); ?></td>
                                 <td><?= $row['ket']; ?></td>
-                                <th>
+                                <td>
                                     <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-sm fa-fw mr-1"></a>
                                     <a href="getHalaman.php?id=<?= $row['id_data']; ?>&hal=<?= 'ubah_dokumentasi.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a>
                                     <a href="hapus_dataDokumentasi.php?id=<?= $row['id_data']; ?>" onclick="return confirm('Yakin Ingin Hapus data?');" class="fas fa-trash fa-sm fa-fw mr-1 <?= $sesion; ?>"></a>
-                                </th>
+                                </td>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>

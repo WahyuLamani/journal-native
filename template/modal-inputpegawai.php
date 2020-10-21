@@ -27,28 +27,30 @@ if (isset($_POST["tambahDataPegawai"])) {
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <div class="card shadow">
-                        <div class="card-header">
-                            <h6 class="font-weight-bold text-primary"></h6>
-                        </div>
-                        <div class="card-body">
-                            <form action="" method="POST" class="<?= $wewenang; ?>">
-                                <div class="form-group">
-                                    <input type="text" name="nip" class="form-control" id="inputEmail3" placeholder=" No.Induk Pegawai">
-                                </div>
-                                <div class="form-group">
-                                    <select id="inputState" name="role" class="form-control">
-                                        <option selected>Pegawai Sebagai</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="staff">Staf</option>
-                                    </select>
-                                </div>
-                                <button type="submit" name="tambahDataPegawai" class="btn btn-primary fa-pull-right">Tambah Pegawai</button>
-                            </form>
-                        </div>
+                <form action="" method="POST" class="<?= $wewenang; ?>">
+                    <div class="form-group">
+                        <input type="text" name="nip" class="form-control" id="inputEmail3" placeholder=" No.Induk Pegawai">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <select id="inputState" name="role" class="form-control form-control-sm">
+                            <option selected>Pegawai Sebagai</option>
+                            <option value="admin">Admin</option>
+                            <option value="staff">Staf</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="id_sub_bagian" class="form-control form-control-sm">
+                            <option selected>Pilih</option>
+                            <?php $data = query("SELECT * FROM sub_bagian WHERE id_bagian = $id_bagian"); ?>
+                            <?php $i = 1; ?>
+                            <?php foreach ($data as $row) : ?>
+                                <option value="<?= $row['id_sub_bagian']; ?>"><?= $row['uraian']; ?></option>
+                                <?php $i++; ?>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <button type="submit" name="tambahDataPegawai" class="btn btn-primary">Tambah Pegawai</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
