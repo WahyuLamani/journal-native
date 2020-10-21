@@ -50,7 +50,7 @@ $data = query("SELECT * FROM pegawai");
                             <th>Nomor Induk Pegawai</th>
                             <th>Jabatan</th>
                             <th>Foto</th>
-                            <th>Edit</th>
+                            <th width="125">Edit</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -70,7 +70,7 @@ $data = query("SELECT * FROM pegawai");
                                 <td><?= $row['jabatan']; ?></td>
                                 <td><img width="45" class="img-profile rounded-circle" src="img/<?= $row['gambar']; ?>">
                                 </td>
-                                <td><a href="hapus_pegawai.php?nip=<?= $row['nip']; ?>" onclick="return confirm('Yakin Ingin Hapus data <?= $row['nama']; ?>?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
+                                <td><a href="hapus_pegawai.php?nip=<?= $row['nip']; ?>" onclick="return confirm('Yakin Ingin Hapus data <?= $row['nama']; ?>?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a> || <a href="forgotPassword.php?nip=<?= $row['nip']; ?>" onclick="return confirm('Reset Password <?= $row['nama']; ?>?');" class="btn btn-danger fas fa-undo fa-sm"> Password</a></td>
                             </tr>
                             <?php $i++; ?>
                         <?php endforeach; ?>

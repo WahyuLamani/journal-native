@@ -7,10 +7,14 @@ if (isset($_POST["register"])) {
 
     if (registrasi($_POST) > 0) {
         echo "<script>
-                alert('Data Berhasil Di Tambahkan !');
+                alert('Berhasil Registrasi, Silakan Login !');
+                document.location.href= 'login.php';
             </script>";
     } else {
-        echo mysqli_error($koneksi);
+        echo "<script>
+        alert('Gagal Registrasi !');
+        document.location.href= 'registrasi.php';
+    </script>";
     }
 }
 

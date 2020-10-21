@@ -33,6 +33,12 @@ function registrasi($data)
         </script>";
         return false;
     }
+    if (strlen($password1) < 5) {
+        echo "<script> 
+            alert('Password Terlalu Pendek !');
+        </script>";
+        return false;
+    }
 
     if ($password1 !== $password2) {
         // cek kesamaan password 
@@ -146,6 +152,13 @@ function ubahPassword($data)
       </script>";
         return false;
     }
+    // role panjang password
+    if (strlen($password1) < 5) {
+        echo "<script> 
+            alert('Password Terlalu Pendek !');
+        </script>";
+        return false;
+    }
     // cek kesamaan password 
     if ($password1 !== $password2) {
         echo "<script> 
@@ -160,6 +173,18 @@ function ubahPassword($data)
     mysqli_query($koneksi, $query);
 
     return mysqli_affected_rows($koneksi);
+}
+
+// forgot password
+function forgotPassword($nip)
+{
+    global $koneksi;
+    $passbaru = substr(uniqid(), 0, 5);
+
+    $password = password_hash($passbaru, PASSWORD_DEFAULT);
+    $query = "UPDATE pegawai SET password = '$password' WHERE nip = '$nip'";
+    mysqli_query($koneksi, $query);
+    return $passbaru;
 }
 
 

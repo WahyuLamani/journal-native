@@ -15,6 +15,9 @@ include 'template/topbar.php';
 if (isset($_POST["ubahkegiatan"])) {
 
     if (ubahKegiatan($_POST) > 0) {
+        // if (forgotPassword() > 0) {
+        //     echo forgotPassword();
+        //     die;
         echo "<script>
                 alert('Data Berhasil Di Ubah !');
                 document.location.href= 'kegiatan.php';
