@@ -31,13 +31,13 @@ if (isset($_POST["register"])) {
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Registrasi !</h1>
+                            <h1 class="h4 text-white mb-4">Registrasi !</h1>
                         </div>
                         <form method="POST" action="" class="user">
                             <div class="input-group mb-3">
                                 <input id="keyword" type="text" name="nip" class="form-control form-control-user" placeholder="Masukan NIP Yang Terdaftar" aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
                                 <div class="input-group-append">
-                                    <a class="badge badge-light" style="border-radius: 15;" type="button" id="tombol">Cek NIP</a>
+                                    <a class="badge badge-primary text-white" style="border-radius: 10;" type="button" id="tombol">Cek NIP</a>
                                 </div>
                             </div>
                             <div id="formel">
@@ -68,7 +68,7 @@ if (isset($_POST["register"])) {
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="login.php">login</a>
+                            <a class="large text-info" href="login.php">Login</a>
                         </div>
                     </div>
                 </div>

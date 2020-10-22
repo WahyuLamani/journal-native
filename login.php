@@ -10,14 +10,14 @@ include 'template/log-header.php';
 
     <div class="container">
         <div class="row m-4 justify-content-center">
-            <h1> </h1>
+            <h1 class="display-4 font-italic text-primary mt-2 mb-0">Jurnal Harian Pegawai</h1>
         </div>
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
             <div class="col-lg-7">
 
-                <div class="card o-hidden border-0 shadow-lg my-5 warna">
+                <div class="card o-hidden border-0 shadow-lg my-4 warna">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
@@ -25,7 +25,7 @@ include 'template/log-header.php';
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang !</h1>
+                                        <h1 class="h4 text-white mb-4">Silakan Login</h1>
                                     </div>
                                     <form action="login_cek.php" method="POST" class="user">
                                         <div class="form-group">
@@ -42,7 +42,7 @@ include 'template/log-header.php';
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="registrasi.php">Registrasi</a>
+                                        <a class="large text-info" href="registrasi.php">Registrasi</a>
                                     </div>
                                 </div>
                             </div>

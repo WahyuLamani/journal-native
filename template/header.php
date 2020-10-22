@@ -8,6 +8,8 @@ $id_sub_bagian = $_SESSION['id_sub_bagian'];
 
 $data = query("SELECT * FROM pegawai WHERE id_pegawai = $id")[0];
 
+$sub_bagian = query("SELECT unit_kerja.id_sub_bagian, sub_bagian.* FROM unit_kerja INNER JOIN sub_bagian USING (id_sub_bagian) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian")[0];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

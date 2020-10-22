@@ -10,7 +10,7 @@ include 'template/topbar.php';
 
 
 
-$sub_bagian = query("SELECT unit_kerja.id_sub_bagian, sub_bagian.* FROM unit_kerja INNER JOIN sub_bagian USING (id_sub_bagian) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian")[0];
+
 
 ?>
 

@@ -3,15 +3,19 @@ date_default_timezone_set("Asia/Makassar");
 session_start();
 $nip = $_SESSION['nip'];
 $filename = date('Y-m-d H:i');
-// header("Content-Type: application/xls");
-// header("Content-Disposition: attachment; filename=$filename.xls");
+header("Content-Type: application/xls");
+header("Content-Disposition: attachment; filename=AKTIFITAS $filename.xls");
 require 'functions.php';
+$id_bagian = $_SESSION['id_bagian'];
+$id_sub_bagian = $_SESSION['id_sub_bagian'];
+
+$sub_bagian = query("SELECT unit_kerja.id_sub_bagian, sub_bagian.* FROM unit_kerja INNER JOIN sub_bagian USING (id_sub_bagian) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian")[0];
 
 $sesion = $_SESSION['role_pegawai'];
 if ($sesion == 'staff') {
-    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, unit_kerja.id_sub_bagian, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, sub_bagian.uraian AS sub_uraian FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE unit_kerja.id_sub_bagian = $id_sub_bagian AND pegawai.nip = $nip");
 } else {
-    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, unit_kerja.id_sub_bagian, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, sub_bagian.uraian AS sub_uraian FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE skp.id_bagian = $id_bagian");
 }
 ?>
 
@@ -47,7 +51,7 @@ if ($sesion == 'staff') {
     <li>Jabatan : </li>
 </ul>
 <ul class="kanan">
-    <li>Unit Kerja : Sub Bagian Perencanaan</li>
+    <li>Unit Kerja : <?= $sub_bagian['uraian']; ?></li>
     <li>Tanggal : <?= date('Y-m-d'); ?></li>
 </ul>
 
@@ -58,6 +62,7 @@ if ($sesion == 'staff') {
             <th>Jenis SKP</th>
             <th>Target</th>
             <th>Aktivitas Harian</th>
+            <th scope="col">Sub Bagian</th>
             <th>Tanggal</th>
         </tr>
     </thead>
@@ -69,6 +74,7 @@ if ($sesion == 'staff') {
                 <td><?= $row['uraian']; ?></td>
                 <td><?= $row['target'] . ' ' . $row['satuan']; ?></td>
                 <td><?= $row['kegiatan']; ?></td>
+                <td scope="col"><?= $row['sub_uraian']; ?></td>
                 <td><?= $row['tanggal']; ?></td>
         </tr>
     <?php endforeach; ?>

@@ -17,7 +17,7 @@ if ($sesion == 'staff') {
     // $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 } else {
 
-    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan,skp.id_bagian, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE skp.id_bagian = $id_bagian");
+    $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, unit_kerja.id_sub_bagian, sub_bagian.uraian AS sub_uraian FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE skp.id_bagian = $id_bagian");
     // $data1 = query("SELECT data.id_data, data.file, data.tanggal_data, data.ket, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM data INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
 }
 
@@ -36,9 +36,8 @@ if ($sesion == 'staff') {
     <div class="d-sm-flex align-items-center justify-content-between mb-0">
         <h1 class="h3 mb-4 text-gray-800">Dokumentasi</h1>
         <p class="d-none d-sm-inline-block text-gray-650"> <?= date('Y-m-d H:i:s'); ?> </p>
-
-
     </div>
+    <h5 class="font-weight-light text-primary">Unit Kerja : <?= $sub_bagian['uraian']; ?></h5>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -60,6 +59,7 @@ if ($sesion == 'staff') {
                             <th scope="col">Nama File</th>
                             <th scope="col">SKP</th>
                             <th scope="col">Target</th>
+                            <th scope="col" class="<?= $sesion; ?>">Sub Bagian</th>
                             <th scope="col">Pesan</th>
                             <th width="56">Menu</th>
                         </tr>
@@ -74,6 +74,7 @@ if ($sesion == 'staff') {
                                 </button></td> -->
                                 <td><?= $row['uraian']; ?></td>
                                 <td><?= substr($row['target'] . ' ' . $row['satuan'], 0, 5); ?></td>
+                                <th scope="col" class="<?= $sesion; ?>"><?= $row['sub_uraian']; ?></th>
                                 <td><?= $row['ket']; ?></td>
                                 <td>
                                     <a href="download.php?filename=<?= $row['file']; ?>" class="fas fa-download fa-sm fa-fw mr-1"></a>

@@ -16,7 +16,7 @@ if ($sesion == 'staff') {
     // $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip) WHERE pegawai.nip = $nip");
 } else {
     // $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, skp.uraian, skp.target, skp.satuan, pegawai.nip, pegawai.nama FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)");
-    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, unit_kerja.id_sub_bagian, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, unit_kerja.id_sub_bagian, sub_bagian.uraian AS sub_uraian FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE skp.id_bagian = $id_bagian");
+    $data = query("SELECT kegiatan_pegawai.id_kegiatan, kegiatan_pegawai.kegiatan, kegiatan_pegawai.tanggal, unit_kerja.id_sub_bagian, skp.uraian, skp.target, skp.satuan, skp.id_bagian, pegawai.nip, pegawai.nama, sub_bagian.uraian AS sub_uraian FROM kegiatan_pegawai INNER JOIN skp USING(id_skp) INNER JOIN pegawai USING(nip)INNER JOIN unit_kerja USING (nip) INNER JOIN sub_bagian USING (id_sub_bagian) WHERE skp.id_bagian = $id_bagian");
 }
 
 
@@ -34,9 +34,8 @@ if ($sesion == 'staff') {
     <div class="d-sm-flex align-items-center justify-content-between mb-0">
         <h1 class="h3 mb-4 text-gray-800">Pegawai</h1>
         <p class="d-none d-sm-inline-block text-gray-650"> <?= date('Y-m-d H:i:s'); ?> </p>
-
-
     </div>
+    <h5 class="font-weight-light text-primary">Unit Kerja : <?= $sub_bagian['uraian']; ?></h5>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -54,7 +53,7 @@ if ($sesion == 'staff') {
                             <th scope="col" class="<?= $sesion; ?>">Nama</th>
                             <th scope="col">Jenis SKP</th>
                             <th scope="col">Target</th>
-                            <th scope="col">Aktivitas</th>
+                            <th scope="col">Aktifitas</th>
                             <th scope="col" class="<?= $sesion; ?>">Sub Bagian</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col" width="30">Edit</th>
