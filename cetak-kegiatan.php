@@ -44,17 +44,25 @@ if ($sesion == 'staff') {
     }
 </style>
 <h4>JURNAL HARIAN PEGAWAI<br>BAGIAN PERENCANAAN, KERJA SAMA DAN HUMAS</h4>
+<table width="100%">
 
-<ul class="kiri">
-    <li>Nama : Wahyu Lamani</li>
-    <li>NIP : <?= $nip; ?></li>
-    <li>Jabatan : </li>
-</ul>
-<ul class="kanan">
-    <li>Unit Kerja : <?= $sub_bagian['uraian']; ?></li>
-    <li>Tanggal : <?= date('Y-m-d'); ?></li>
-</ul>
+    <tr>
+        <td>Nama : </td>
+        <td class="kanan">Unit Kerja : <?= $sub_bagian['uraian']; ?></td>
 
+    </tr>
+
+    <tr>
+        <td>NIP : <?= $nip; ?></td>
+
+        <td class="kanan">Tanggal : <?= date('Y-m-d'); ?></td>
+    </tr>
+
+    <tr>
+        <td>Jabatan : </td>
+    </tr>
+    <br>
+</table>
 <table border="1" cellspacing="0">
     <thead>
         <tr>
