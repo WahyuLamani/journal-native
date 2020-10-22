@@ -9,14 +9,20 @@ if (isset($_SESSION['login'])) {
     header('location:login.php');
 }
 require 'functions.php';
-
+$nip = $_SESSION['nip'];
 $id = $_GET["nip"];
-if (hapus_pegawai($id) > 0) {
-    echo ' <script> alert("data berhasil di hapus !");
+if ($nip === $id) {
+    echo ' <script> alert("Anda tidak bisa menghapus data Anda");
     document.location.href= "pegawai.php";
     </script>';
 } else {
-    echo '<script> alert("data gagal di hapus !");
+    if (hapus_pegawai($id) > 0) {
+        echo ' <script> alert("data berhasil di hapus !");
+    document.location.href= "pegawai.php";
+    </script>';
+    } else {
+        echo '<script> alert("data gagal di hapus !");
      document.location.href= "pegawai.php";
     </script>';
+    }
 }
