@@ -526,3 +526,33 @@ function uploadData()
 
     return $namaFileBaru;
 }
+
+// ubah bagian
+function ubahBagian($data)
+{
+    global $koneksi;
+    $id_bagian = $data['id_bagian'];
+    $uraian = htmlspecialchars($data["uraian"]);
+
+    $query = "UPDATE bagian SET uraian = '$uraian'
+    WHERE id_bagian = $id_bagian";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
+
+// ubah sub bagian
+function ubah_subBagian($data)
+{
+    global $koneksi;
+    $id_sub_bagian = $data['id_sub_bagian'];
+    $uraian = htmlspecialchars($data["uraian"]);
+
+    $query = "UPDATE sub_bagian SET uraian = '$uraian'
+    WHERE id_sub_bagian = $id_sub_bagian";
+
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}

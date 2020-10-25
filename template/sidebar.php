@@ -67,7 +67,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="skp.php
                         ">Input Data SKP (tahunan)</a>
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="bagian-subBagian.php
-                        ">Input Bagian-SubBagian</a>
+                        ">Bagian-SubBagian</a>
                     </div>
                 </div>
             </li>

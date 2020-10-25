@@ -51,13 +51,13 @@ if (isset($_POST["inputskp"])) {
                 </div>
                 <div class="card-body">
 
-                    <table class="table">
+                    <table class="table responsive">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Deskripsi</th>
-                                <th scope="col" width="115">Id</th>
-                                <th scope="col" width="71">Edit</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Edit</th>
                             </tr>
                         </thead>
                         <tbody><?php $i = 1; ?>
@@ -66,7 +66,7 @@ if (isset($_POST["inputskp"])) {
                                     <th scope="row"><?= $i; ?></th>
                                     <td><?= $row['uraian']; ?></td>
                                     <td><?= $row['id_bagian']; ?></td>
-                                    <td><a href="getHalaman.php?id=<?= $row['id_bagian']; ?>&hal=<?= 'ubah_bagian.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a>|<a href="hapus_skp.php?id=<?= $row['id_bagian']; ?>" onclick="return confirm('Yakin Ingin Hapus data ?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
+                                    <td><a href="getHalaman.php?id=<?= $row['id_bagian']; ?>&hal=<?= 'ubah_bagian.php'; ?>" class="fas fa-pen fa-sm fa-fw"></a></td>
                                 </tr>
                                 <?php $i++; ?>
                             <?php endforeach; ?>
@@ -84,12 +84,12 @@ if (isset($_POST["inputskp"])) {
                 </div>
                 <div class="card-body">
 
-                    <table class="table" id="dataTable">
+                    <table class="table responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Deskripsi</th>
-                                <th scope="col" width="115">Target</th>
-                                <th scope="col" width="71">Edit</th>
+                                <th scope="col">Target</th>
+                                <th scope="col">Edit</th>
                             </tr>
 
                         </thead>
@@ -98,7 +98,7 @@ if (isset($_POST["inputskp"])) {
                                 <tr>
                                     <td><?= $row['uraian']; ?></td>
                                     <td><?= 'id Bagian ' . $row['id_bagian']; ?></td>
-                                    <td><a href="getHalaman.php?id=<?= $row['id_sub_bagian']; ?>&hal=<?= 'ubah_subBagian.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a>|<a href="hapus_subBagian.php?id=<?= $row['id_sub_bagian']; ?>" onclick="return confirm('Yakin Ingin Hapus data ?');" class="fas fa-trash fa-sm fa-fw mr-1"> </a></td>
+                                    <td><a href="getHalaman.php?id=<?= $row['id_sub_bagian']; ?>&hal=<?= 'ubah_subBagian.php'; ?>" class="fas fa-pen fa-sm fa-fw mr-1"></a></td>
                                 </tr>
                                 <?php $i++; ?>
                             <?php endforeach; ?>
