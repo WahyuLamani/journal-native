@@ -23,7 +23,7 @@ include 'template/topbar.php';
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-4 text-gray-800">Profile</h1>
+        <h1 class="h3 mb-4 text-gray-800">Profil Pegawai</h1>
         <p class="d-none d-sm-inline-block text-gray-650"> <?= date('Y-m-d H:i:s'); ?> </p>
     </div>
     <!-- Content Row -->

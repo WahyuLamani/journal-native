@@ -25,7 +25,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                 <a class="nav-link" href="index.php
                 ">
                     <i class="fas fa-fw fa-user "></i>
-                    <span>User Profile</span></a>
+                    <span>Profil Pegawai</span></a>
             </li>
 
             <!-- Divider -->
@@ -65,7 +65,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="pegawai.php
                         ">Pegawai</a>
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="skp.php
-                        ">Input Data SKP (tahunan)</a>
+                        ">Sasaran Kerja Pegawai(SKP)</a>
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="bagian-subBagian.php
                         ">Bagian-SubBagian</a>
                     </div>

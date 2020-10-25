@@ -80,7 +80,7 @@ if (isset($_POST["inputskp"])) {
                 </div>
                 <div class="card-body">
 
-                    <table class="table">
+                    <table class="table" id="dataTable">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -149,6 +149,12 @@ include 'template/modal.php';
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 
+<!-- Page level plugins -->
+<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/datatables-demo.js"></script>
 
 
 </body>

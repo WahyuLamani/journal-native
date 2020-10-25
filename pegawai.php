@@ -54,15 +54,6 @@ $data = query("SELECT pegawai.*, unit_kerja.id_sub_bagian, sub_bagian.id_bagian 
                             <th width="125">Edit</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Nomor Induk Pegawai</th>
-                            <th>Jabatan</th>
-                            <th>Foto</th>
-                            <th>Edit</th>
-                        </tr>
-                    </tfoot>
                     <tbody><?php $i = 1; ?>
                         <?php foreach ($data as $row) : ?>
                             <tr>
