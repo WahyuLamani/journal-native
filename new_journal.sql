@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Okt 2020 pada 21.17
+-- Waktu pembuatan: 25 Okt 2020 pada 17.23
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -39,7 +39,8 @@ CREATE TABLE `bagian` (
 
 INSERT INTO `bagian` (`id_bagian`, `uraian`) VALUES
 (1, 'Bagian Perencanaan Kerja Sama Dan Humas'),
-(2, 'Bagian Test');
+(2, 'Bagian Testing 1'),
+(3, 'Bagian Testing 2\r\n');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,9 @@ CREATE TABLE `data` (
 --
 
 INSERT INTO `data` (`id_data`, `id_skp`, `nip`, `file`, `tanggal_data`, `ket`) VALUES
-(20, 30, '17024051', 'DAFTAR  KEGIATAN  MAHASISWA  PKL_ID.docx', ' 2020-10-21 23:25:14', '');
+(20, 30, '17024051', 'DAFTAR  KEGIATAN  MAHASISWA  PKL_ID.docx', ' 2020-10-21 23:25:14', ''),
+(21, 30, '123', 'Latihan2_KD.pdf', ' 2020-10-22 13:02:23', ''),
+(22, 31, '123', 'Latihan2_UB.pdf', ' 2020-10-22 13:02:43', '');
 
 -- --------------------------------------------------------
 
@@ -83,7 +86,10 @@ CREATE TABLE `kegiatan_pegawai` (
 
 INSERT INTO `kegiatan_pegawai` (`id_kegiatan`, `nip`, `id_skp`, `kegiatan`, `tanggal`) VALUES
 (18, '17024051', 30, 'Memvalidasi data Institusi', ' 2020-10-21 23:01:59'),
-(19, '17024051', 31, 'Membuat data Rincian perjanjian', ' 2020-10-21 23:02:24');
+(19, '17024051', 31, 'Membuat data Rincian perjanjian', ' 2020-10-21 23:02:24'),
+(20, '123', 30, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sint!', ' 2020-10-22 13:00:37'),
+(21, '123', 31, 'Lorem ipsum dolor sit.', ' 2020-10-22 13:02:09'),
+(22, '123', 30, 'Lorem ipsum dolor sit amet consectetur.', ' 2020-10-22 13:01:36');
 
 -- --------------------------------------------------------
 
@@ -106,8 +112,11 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama`, `nip`, `password`, `jabatan`, `gambar`) VALUES
 (9, 'wahyu lamani', '17024051', '$2y$10$/8gpRU1Nab2OR5LBbNxQl.SW2vVnjDcmdMijZx5u.9JtmK7OMHin2', 'mahasiswa', '5f900a969d361.jpg'),
-(39, 'admin', '111', '$2y$10$FQwmNWNkZGsWu8JaaviS6e234McLyIbCzxuizXTrKEPOO07Pup3B2', 'admin', 'default.png'),
-(40, 'test', '999', '$2y$10$5.THGP4YdTr0xCO9ffx6NOOQLbJJnh24zs65MZGTYHQlE9cuf/s6q', 'test', 'default.png');
+(39, 'Admin', '111', '$2y$10$KFW0iG5fFL0NgdIcdBDctOp5oTzG/7y6vaC5KGaqyYfPluPFdXKaS', 'admin', 'default.png'),
+(40, 'test', '999', '$2y$10$5.THGP4YdTr0xCO9ffx6NOOQLbJJnh24zs65MZGTYHQlE9cuf/s6q', 'test', 'default.png'),
+(41, 'staf', '123', '$2y$10$5WqBi3.Vb3d/Qkecowzw2ug2GWATioIP5I1HOWdI7ABGVxwmfg2uC', 'staf', 'default.png'),
+(42, 'Admin bagian 1', '12345', '$2y$10$vjMms2juh0uYhooeQnAMge4.Hmm7LZ3Q9VKyxjHlr1XTtyIV2PqCi', 'bagian 1', 'default.png'),
+(43, 'admin bagian 2', '123456', '$2y$10$6/gkE57MsrWFYtd4kMsgLuZBRYLbFmuT2anYcVbmECUNgdOwcIAoy', 'bagian 2', 'default.png');
 
 -- --------------------------------------------------------
 
@@ -150,7 +159,10 @@ CREATE TABLE `sub_bagian` (
 INSERT INTO `sub_bagian` (`id_sub_bagian`, `id_bagian`, `uraian`) VALUES
 (3, 1, 'Sub Bagian Kerja Sama'),
 (4, 1, 'Sub Bagian Humas'),
-(5, 2, 'sub bagian test');
+(5, 2, 'sub bagian testing 1'),
+(6, 2, 'sub bagian testing 1.2'),
+(7, 3, 'sub bagian testing 2'),
+(8, 3, 'sub bagian testing 2.2\r\n');
 
 -- --------------------------------------------------------
 
@@ -171,7 +183,10 @@ CREATE TABLE `unit_kerja` (
 INSERT INTO `unit_kerja` (`id_unit_kerja`, `id_sub_bagian`, `nip`) VALUES
 (1, 4, '17024051'),
 (4, 3, '111'),
-(5, 5, '999');
+(5, 5, '999'),
+(6, 3, '123'),
+(7, 5, '12345'),
+(8, 7, '123456');
 
 -- --------------------------------------------------------
 
@@ -191,6 +206,9 @@ CREATE TABLE `wewenang` (
 
 INSERT INTO `wewenang` (`nip`, `role_pegawai`, `user_is`) VALUES
 ('111', 'admin', 'aktif'),
+('123', 'staff', 'aktif'),
+('12345', 'admin', 'aktif'),
+('123456', 'admin', 'aktif'),
 ('17024051', 'admin', 'aktif'),
 ('999', 'admin', 'aktif');
 
@@ -263,25 +281,25 @@ ALTER TABLE `wewenang`
 -- AUTO_INCREMENT untuk tabel `bagian`
 --
 ALTER TABLE `bagian`
-  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `data`
 --
 ALTER TABLE `data`
-  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_data` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `kegiatan_pegawai`
 --
 ALTER TABLE `kegiatan_pegawai`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_pegawai` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `skp`
@@ -293,13 +311,13 @@ ALTER TABLE `skp`
 -- AUTO_INCREMENT untuk tabel `sub_bagian`
 --
 ALTER TABLE `sub_bagian`
-  MODIFY `id_sub_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sub_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `unit_kerja`
 --
 ALTER TABLE `unit_kerja`
-  MODIFY `id_unit_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_unit_kerja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
