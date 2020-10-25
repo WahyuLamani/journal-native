@@ -30,7 +30,7 @@ if (isset($_POST["tambahkegiatan"])) {
                         <label for="formGroupExampleInput">Pilih SKP</label>
                         <select name="id_skp" class="form-control form-control-sm">
                             <option selected>Pilih</option>
-                            <?php $data = query("SELECT * FROM skp"); ?>
+                            <?php $data = query("SELECT * FROM skp WHERE id_bagian = $id_bagian"); ?>
                             <?php $i = 1; ?>
                             <?php foreach ($data as $row) : ?>
                                 <option value="<?= $row['id_skp']; ?>"><?= $i . '. ' . $row['uraian']; ?></option>
