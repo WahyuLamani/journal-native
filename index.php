@@ -9,7 +9,8 @@ include 'template/sidebar.php';
 include 'template/topbar.php';
 
 
-
+$_SESSION['nama'] = $data['nama'];
+$_SESSION['jabatan'] = $data['jabatan'];
 
 
 ?>

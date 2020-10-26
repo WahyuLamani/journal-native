@@ -5,6 +5,8 @@ $nip = $_SESSION['nip'];
 $filename = date('Y-m-d H:i');
 header("Content-Type: application/xls");
 header("Content-Disposition: attachment; filename=AKTIFITAS $filename.xls");
+header("Pragma: no-cache");
+header("Expires: 0");
 require 'functions.php';
 $id_bagian = $_SESSION['id_bagian'];
 $id_sub_bagian = $_SESSION['id_sub_bagian'];
@@ -44,25 +46,13 @@ if ($sesion == 'staff') {
     }
 </style>
 <h4>JURNAL HARIAN PEGAWAI<br>BAGIAN PERENCANAAN, KERJA SAMA DAN HUMAS</h4>
-<table width="100%">
-
-    <tr>
-        <td>Nama : </td>
-        <td class="kanan">Unit Kerja : <?= $sub_bagian['uraian']; ?></td>
-
-    </tr>
-
-    <tr>
-        <td>NIP : <?= $nip; ?></td>
-
-        <td class="kanan">Tanggal : <?= date('Y-m-d'); ?></td>
-    </tr>
-
-    <tr>
-        <td>Jabatan : </td>
-    </tr>
-    <br>
-</table>
+<ul>
+    <li>Nama : <?= $_SESSION['nama']; ?></li>
+    <li>NIP : <?= $nip; ?> </li>
+    <li>Jabatan : <?= $_SESSION['jabatan']; ?></li>
+    <li>Unit Kerja : <?= $sub_bagian['uraian']; ?></li>
+    <li>Tanggal : <?= date('Y-m-d'); ?></li>
+</ul>
 <table border="1" cellspacing="0">
     <thead>
         <tr>
@@ -70,7 +60,7 @@ if ($sesion == 'staff') {
             <th>Jenis SKP</th>
             <th>Target</th>
             <th>Aktivitas Harian</th>
-            <th scope="col">Sub Bagian</th>
+            <th scope="col">Unit Kerja</th>
             <th>Tanggal</th>
         </tr>
     </thead>

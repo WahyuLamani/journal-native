@@ -54,7 +54,7 @@ if ($sesion == 'staff') {
                             <th scope="col">Jenis SKP</th>
                             <th scope="col">Target</th>
                             <th scope="col">Aktifitas</th>
-                            <th scope="col" class="<?= $sesion; ?>">Sub Bagian</th>
+                            <th scope="col" class="<?= $sesion; ?>">Unit Kerja</th>
                             <th scope="col">Tanggal</th>
                             <th scope="col" width="30">Edit</th>
                         </tr>

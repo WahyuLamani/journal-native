@@ -59,7 +59,7 @@ if ($sesion == 'staff') {
                             <th scope="col">Nama File</th>
                             <th scope="col">SKP</th>
                             <th scope="col">Target</th>
-                            <th scope="col" class="<?= $sesion; ?>">Sub Bagian</th>
+                            <th scope="col" class="<?= $sesion; ?>">Unit Kerja</th>
                             <th scope="col">Pesan</th>
                             <th width="56">Menu</th>
                         </tr>
