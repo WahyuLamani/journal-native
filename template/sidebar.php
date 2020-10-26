@@ -65,7 +65,7 @@ if (!defined('BASEPATH')) exit('<h1>Error 404 Not Found !</h1>');
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="pegawai.php
                         ">Pegawai</a>
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="skp.php
-                        ">Sasaran Kerja Pegawai(SKP)</a>
+                        ">Sasaran Kerja Pegawai</a>
                         <a class="collapse-item <?= $_SESSION['role_pegawai']; ?>" href="bagian-subBagian.php
                         ">Bagian-SubBagian</a>
                     </div>

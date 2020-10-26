@@ -83,13 +83,9 @@ $data = query("SELECT * FROM data WHERE id_data = $id")[0];
 <!-- End of Main Content -->
 
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-        </div>
-    </div>
-</footer>
+<?php
+include 'template/footer.php';
+?>
 <!-- End of Footer -->
 
 </div>

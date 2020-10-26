@@ -79,13 +79,9 @@ $data = query("SELECT pegawai.*, unit_kerja.id_sub_bagian, sub_bagian.id_bagian 
 <!-- End of Main Content -->
 
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-        </div>
-    </div>
-</footer>
+<?php
+include 'template/footer.php';
+?>
 <!-- End of Footer -->
 
 </div>
